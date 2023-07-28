@@ -1,0 +1,19 @@
+@import '../../../style/variables';
+
+.loginInput {
+    height: 35px;
+    width: 100%;
+    border: none;
+    border-bottom: 0.2px solid $primaryColor;
+}
+
+.loginInput::placeholder {
+    color: $primaryColor;
+    width: 11px;
+}
+
+#loginInput::placeholder {
+    color: red;
+    font-family: $second-Font;
+    font-weight: 100;
+}

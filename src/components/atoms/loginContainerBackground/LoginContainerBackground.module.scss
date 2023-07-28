@@ -1,0 +1,9 @@
+@import '../../../style/variables';
+
+    .loginContainerBackground {
+        background: url(../../../assets/backgroundLoginContainer.jpg) no-repeat center;
+        background-size: cover;
+        border-radius: $loginBg-borderRadiusLeft 0 0 $loginBg-borderRadiusRight;
+        height: 100vh;
+        flex-grow: 3;
+    }

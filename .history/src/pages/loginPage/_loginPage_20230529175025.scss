@@ -1,0 +1,11 @@
+@import "../../components/atoms/loginContainerBackground/loginContainerBackground";
+@import "../../components/organisms/loginContainer/loginContainer";
+
+.urlopApp{
+    &__loginPages{
+        display: flex;
+        flex-direction: row;
+        width: 100vw;
+        height: 100vh;
+    }
+}
