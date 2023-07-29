@@ -5,7 +5,7 @@ module.exports = {
         "sourceType": "module",
         "parser": "@typescript-eslint/parser",
         "plugins": ["@typescript-eslint"],
-
+        
     },
     "parserOptions": {
         "project": "./tsconfig.json"
@@ -15,12 +15,9 @@ module.exports = {
         "es2021": true
     },
     "extends": [
-        'prettier',
         'eslint:recommended',
         'plugin:@typescript-eslint/recommended',
-        "plugin:eslint/recommended",
-        'plugin:prettier/recommended'
-
+        "plugin:eslint/recommended"
     ],
     "overrides": [
     ],
@@ -34,11 +31,8 @@ module.exports = {
         '@typescript-eslint'
 
     ],
-    "rules": {
-        "@typescript-eslint/dot-notation": "error",
-        "prettier/prettier": "error",
-        "arrow-body-style": "off",
-        "prefer-arrow-callback": "off"
+        "rules": {
+            "@typescript-eslint/dot-notation": "error"
 
     }
 }

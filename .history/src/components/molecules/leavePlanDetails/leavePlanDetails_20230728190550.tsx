@@ -1,15 +1,16 @@
 /* eslint-disable eqeqeq */
 /* eslint-disable arrow-parens */
-import { FC, useContext } from 'react';
+import { useContext } from 'react';
 import LeavePlanContext from '../../context/leavePlanContext';
 import LeavePlanDetailsRow from '../../atoms/leavePlanDetailsRow/leavePlanDetailsRow';
+import DetailsInterface from '../../../interface/detailsInterface';
 
-const LeavePlanDetails: FC = () => {
+function LeavePlanDetails() {
   const { dataRender, warnMess } = useContext(LeavePlanContext);
   return (
     <div>
       <ul>
-        {dataRender.map((el: object) => <LeavePlanDetailsRow
+        {dataRender.map((el: DetailsInterface) => <LeavePlanDetailsRow
           key={Math.random()}
           details={el} />)}
       </ul>

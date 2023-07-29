@@ -17,8 +17,8 @@ interface DetailsInterface{
 /* eslint-disable react/prop-types */
 const LeavePlanDetailsRow: FC = (details: object) => {
   
-  const { personId, kindLeave, startDateOfLeave, endDateOfLeave, replacementPerson, leaveId, holidayWorkerApprovalStatus
-  }: DetailsInterface = details;
+  const { personId: string, kindLeave, startDateOfLeave, endDateOfLeave, replacementPerson, leaveId, holidayWorkerApprovalStatus
+  }:  = details;
   
   const [restStatus, setRestStatus] = useState<string>('after rest');
   const { dayFun } = useContext(LeavePlanContext);

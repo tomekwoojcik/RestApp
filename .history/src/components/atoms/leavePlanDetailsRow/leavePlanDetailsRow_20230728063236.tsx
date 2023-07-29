@@ -3,7 +3,6 @@
 import { FC, useContext, useEffect, useState } from 'react';
 import LeavePlanContext from '../../context/leavePlanContext';
 import MenuListLeavePlan from '../../molecules/menuListLeavePlan/menuListLeavePlan';
-
 interface DetailsInterface{
   personId: string
   kindLeave: string
@@ -13,12 +12,10 @@ interface DetailsInterface{
   leaveId: string
   holidayWorkerApprovalStatus: string
 }
-
 /* eslint-disable react/prop-types */
 const LeavePlanDetailsRow: FC = (details: object) => {
-  
   const { personId, kindLeave, startDateOfLeave, endDateOfLeave, replacementPerson, leaveId, holidayWorkerApprovalStatus
-  }: DetailsInterface = details;
+  }:DetailsInterface = details;
   
   const [restStatus, setRestStatus] = useState<string>('after rest');
   const { dayFun } = useContext(LeavePlanContext);
