@@ -27,14 +27,14 @@ interface LeavePlanContextType {
   setLeave: React.Dispatch<React.SetStateAction<string>>;
   setPersonReplace: React.Dispatch<any>;
   personReplaceArr: string[];
-  dataRender: object[];
+  dataRender: any[];
   leave: string;
   personReplace: string;
   dayFun: (personId: string, leaveId: string) => LeavePlanItem[];
   menuListArr: string[];
   handleActionLeave: (e: any) => void;
   dataRenderConfirm: object[];
-  warnMess:object[];
+  warnMess:any[];
   leavePlanHandle: () => void; // Add this property to the interface
 }
 
@@ -46,7 +46,7 @@ export function LeavePlanProvider({ children }: props) {
   const [lastDate, setLastDate] = useState<any>();
   const [leave, setLeave] = useState<string>("none");
   const [personReplace, setPersonReplace] = useState<string>("none");
-  const [dataRender, setDataRender] = useState<object[]>([]);
+  const [dataRender, setDataRender] = useState<any[]>([]);
   const [dataRenderConfirm, setDataRenderConfirm] = useState<object[]>([]);
   const [count, setCount] = useState<number>(1);
   const [warnMess, setWarnMess] = useState<object[]>([]);

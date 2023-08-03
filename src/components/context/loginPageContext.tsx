@@ -1,10 +1,4 @@
-/* eslint-disable max-len */
-/* eslint-disable arrow-parens */
-/* eslint-disable eqeqeq */
-/* eslint-disable consistent-return */
-/* eslint-disable react/prop-types */
 import React, { createContext, useEffect, useMemo, useState } from "react";
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { useNavigate } from "react-router";
 import Data from "./localhostContext";
 import { props } from "../../interface/interfaceProps";
