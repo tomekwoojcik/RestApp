@@ -21,6 +21,7 @@ const LoginPageContext = createContext({} as LoginPageContextModel);
 
 export function LoginPageProvider({ children }: propsModel) {
   const [state, dispatch] = useReducer(reducer, initState);
+  const [passwordValue, setPasswordValue] = useState("");
   const [toggleLogin, setToggleLogin] = useState(false);
   const [handleUser, setHandleUser] = useState<object>();
   const [handleError, setHandleError] = useState<string[]>([]);
@@ -31,24 +32,14 @@ export function LoginPageProvider({ children }: propsModel) {
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
     input: any,
   ) => input(e.target.value);
-  const handleLoginInput = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleTextInput = (e: ChangeEvent<HTMLInputElement>) => {
     dispatch({
       type: REDUCER_ACTION_TYPE.LOGIN_INPUT,
       payload: e.target.value,
     });
   };
-
-  const handlePasswordInput = (e: ChangeEvent<HTMLInputElement>) => {
-    dispatch({
-      type: REDUCER_ACTION_TYPE.PASSWORD_INPUT,
-      payload: e.target.value
-    })
-  }
-  console.log(state.passwordInput);
-
-  const filterLogin = dataEl.filter(
-    (el: any) => el.userId === state.loginInput,
-  );
+  console.log(state.loginInput);
+  const filterLogin = dataEl.filter((el: any) => el.userId === state.loginInput);
 
   const toggleValue = () => {
     if (filterLogin.length === 1) {
@@ -76,7 +67,7 @@ export function LoginPageProvider({ children }: propsModel) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           email: `${state.loginInput}`,
-          password: `${state.passwordInput}`,
+          password: `${passwordValue}`,
         }),
       }).then(response => response.json());
       const { accessToken, user }: ResponseModel = res;
@@ -107,9 +98,9 @@ export function LoginPageProvider({ children }: propsModel) {
   return (
     <LoginPageContext.Provider
       value={{
-        handleLoginInput,
-        handlePasswordInput,
+        handleTextInput,
         handleValue,
+        setPasswordValue,
         toggleValue,
         toggleLogin,
         loginHandle,

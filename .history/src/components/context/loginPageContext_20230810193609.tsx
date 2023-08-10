@@ -21,6 +21,7 @@ const LoginPageContext = createContext({} as LoginPageContextModel);
 
 export function LoginPageProvider({ children }: propsModel) {
   const [state, dispatch] = useReducer(reducer, initState);
+  const [passwordValue, setPasswordValue] = useState("");
   const [toggleLogin, setToggleLogin] = useState(false);
   const [handleUser, setHandleUser] = useState<object>();
   const [handleError, setHandleError] = useState<string[]>([]);
@@ -37,15 +38,7 @@ export function LoginPageProvider({ children }: propsModel) {
       payload: e.target.value,
     });
   };
-
-  const handlePasswordInput = (e: ChangeEvent<HTMLInputElement>) => {
-    dispatch({
-      type: REDUCER_ACTION_TYPE.PASSWORD_INPUT,
-      payload: e.target.value
-    })
-  }
-  console.log(state.passwordInput);
-
+  console.log(state.loginInput);
   const filterLogin = dataEl.filter(
     (el: any) => el.userId === state.loginInput,
   );
@@ -76,7 +69,7 @@ export function LoginPageProvider({ children }: propsModel) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           email: `${state.loginInput}`,
-          password: `${state.passwordInput}`,
+          password: `${passwordValue}`,
         }),
       }).then(response => response.json());
       const { accessToken, user }: ResponseModel = res;
@@ -108,8 +101,8 @@ export function LoginPageProvider({ children }: propsModel) {
     <LoginPageContext.Provider
       value={{
         handleLoginInput,
-        handlePasswordInput,
         handleValue,
+        setPasswordValue,
         toggleValue,
         toggleLogin,
         loginHandle,

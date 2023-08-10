@@ -21,6 +21,7 @@ const LoginPageContext = createContext({} as LoginPageContextModel);
 
 export function LoginPageProvider({ children }: propsModel) {
   const [state, dispatch] = useReducer(reducer, initState);
+  const [passwordValue, setPasswordValue] = useState("");
   const [toggleLogin, setToggleLogin] = useState(false);
   const [handleUser, setHandleUser] = useState<object>();
   const [handleError, setHandleError] = useState<string[]>([]);
@@ -76,7 +77,7 @@ export function LoginPageProvider({ children }: propsModel) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           email: `${state.loginInput}`,
-          password: `${state.passwordInput}`,
+          password: `${passwordValue}`,
         }),
       }).then(response => response.json());
       const { accessToken, user }: ResponseModel = res;
@@ -110,6 +111,7 @@ export function LoginPageProvider({ children }: propsModel) {
         handleLoginInput,
         handlePasswordInput,
         handleValue,
+        setPasswordValue,
         toggleValue,
         toggleLogin,
         loginHandle,

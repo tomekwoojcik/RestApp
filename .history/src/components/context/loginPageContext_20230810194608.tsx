@@ -21,6 +21,7 @@ const LoginPageContext = createContext({} as LoginPageContextModel);
 
 export function LoginPageProvider({ children }: propsModel) {
   const [state, dispatch] = useReducer(reducer, initState);
+  const [passwordValue, setPasswordValue] = useState("");
   const [toggleLogin, setToggleLogin] = useState(false);
   const [handleUser, setHandleUser] = useState<object>();
   const [handleError, setHandleError] = useState<string[]>([]);

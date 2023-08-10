@@ -21,6 +21,8 @@ const LoginPageContext = createContext({} as LoginPageContextModel);
 
 export function LoginPageProvider({ children }: propsModel) {
   const [state, dispatch] = useReducer(reducer, initState);
+  const [loginValue, setLoginValue] = useState("");
+  const [passwordValue, setPasswordValue] = useState("");
   const [toggleLogin, setToggleLogin] = useState(false);
   const [handleUser, setHandleUser] = useState<object>();
   const [handleError, setHandleError] = useState<string[]>([]);
@@ -31,24 +33,13 @@ export function LoginPageProvider({ children }: propsModel) {
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
     input: any,
   ) => input(e.target.value);
-  const handleLoginInput = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleTextInput = (e: ChangeEvent<HTMLInputElement>) => {
     dispatch({
       type: REDUCER_ACTION_TYPE.LOGIN_INPUT,
       payload: e.target.value,
     });
   };
-
-  const handlePasswordInput = (e: ChangeEvent<HTMLInputElement>) => {
-    dispatch({
-      type: REDUCER_ACTION_TYPE.PASSWORD_INPUT,
-      payload: e.target.value
-    })
-  }
-  console.log(state.passwordInput);
-
-  const filterLogin = dataEl.filter(
-    (el: any) => el.userId === state.loginInput,
-  );
+  const filterLogin = dataEl.filter((el: any) => el.userId === loginValue);
 
   const toggleValue = () => {
     if (filterLogin.length === 1) {
@@ -58,7 +49,7 @@ export function LoginPageProvider({ children }: propsModel) {
       setHandleError(handleError);
       return;
     }
-    if (state.loginInput.length < 5) {
+    if (loginValue.length < 5) {
       handleError.push(
         "The user is not correct, please try again later or contact your administrator.",
       );
@@ -75,8 +66,8 @@ export function LoginPageProvider({ children }: propsModel) {
         method: "post",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          email: `${state.loginInput}`,
-          password: `${state.passwordInput}`,
+          email: `${loginValue}`,
+          password: `${passwordValue}`,
         }),
       }).then(response => response.json());
       const { accessToken, user }: ResponseModel = res;
@@ -91,7 +82,7 @@ export function LoginPageProvider({ children }: propsModel) {
         },
       ).then(response => response.json());
       setHandleUser(resUser);
-    } catch (error: any) {
+    } catch (error) {
       throw new Error(error.message);
     }
   };
@@ -107,9 +98,9 @@ export function LoginPageProvider({ children }: propsModel) {
   return (
     <LoginPageContext.Provider
       value={{
-        handleLoginInput,
-        handlePasswordInput,
         handleValue,
+        setLoginValue,
+        setPasswordValue,
         toggleValue,
         toggleLogin,
         loginHandle,
