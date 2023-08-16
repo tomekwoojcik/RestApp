@@ -1,11 +1,11 @@
 import { Dayjs } from "dayjs";
 
-type DateObjType = {
+export type DateObjType = {
   $d?: string;
 };
 
-const obj: DateObjType = {};
-const setFirstDay: DateObjType = {};
+const obj: Dayjs = {};
+const setFirstDay: Dayjs = {};
 const setLastDay: DateObjType = {};
 export const initState = {
   setFirstDay,

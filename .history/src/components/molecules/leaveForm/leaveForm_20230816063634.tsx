@@ -29,7 +29,7 @@ const LeaveForm: FC = () => {
           />
           <DatePicker
             defaultValue={dayjs(new Date())}
-            onChange={(e:Dayjs| null) => handleDay(REDUCER_ACTION_TYPE.SET_FIRST_DAY, e)}
+            onChange={(e:Dayjs| null) => handleDay(REDUCER_ACTION_TYPE.SET_LAST_DAY, e)}
             label="The last day of leave"
           />
           <TextField

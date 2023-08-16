@@ -24,12 +24,12 @@ const LeaveForm: FC = () => {
           Plan your rest.
           <DatePicker
             defaultValue={dayjs(new Date())} 
-            onChange={(e:Dayjs| null) => handleDay(REDUCER_ACTION_TYPE.SET_FIRST_DAY, e)}
+            onChange={(e:DayO| null) => handleDay(REDUCER_ACTION_TYPE.SET_FIRST_DAY, e)}
             label="The first day of leave"
           />
           <DatePicker
             defaultValue={dayjs(new Date())}
-            onChange={(e:Dayjs| null) => handleDay(REDUCER_ACTION_TYPE.SET_FIRST_DAY, e)}
+            onChange={(e:Dayjs| null) => handleDay(REDUCER_ACTION_TYPE.SET_LAST_DAY, e)}
             label="The last day of leave"
           />
           <TextField

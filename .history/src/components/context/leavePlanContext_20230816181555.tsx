@@ -20,7 +20,10 @@ interface LeavePlanItemModel {
 }
 
 interface LeavePlanContextModel {
-  handleDay: (type: REDUCER_ACTION_TYPE, e: Dayjs | null) => void;
+  handleDay: (
+    type: REDUCER_ACTION_TYPE,
+    e: Dayjs | null,
+  ) => void;
   leaveArr: string[];
   setLeave: React.Dispatch<React.SetStateAction<string>>;
   setPersonReplace: React.Dispatch<any>;
@@ -70,7 +73,10 @@ export function LeavePlanProvider({ children }: propsModel) {
     "Tom Yellow",
   ];
 
-  const handleDay = (type: REDUCER_ACTION_TYPE, e: Dayjs | null) => {
+  const handleDay = (
+    type: REDUCER_ACTION_TYPE,
+    e: Dayjs | null,
+  ) => {
     dispatch({
       type: type,
       handle: e,
@@ -84,10 +90,11 @@ export function LeavePlanProvider({ children }: propsModel) {
     setWarnMess(warnMess);
     setBooleanValue(false);
   };
-const {$d} = state.setFirstDay
+
+  console.log(state.setFirstDay.$d);
   const leavePlanHandle = () => {
     const todayDate = new Date();
-    const firstDayOfLeave = dayjs()
+    const firstDayOfLeave = new Date();
     const lastDayOfLeave = new Date();
     if (leaveData.getData().length != 0) {
       const parseArr = leaveData

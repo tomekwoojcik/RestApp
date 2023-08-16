@@ -4,12 +4,12 @@ type DateObjType = {
   $d?: string;
 };
 
-const obj: DateObjType = {};
-const setFirstDay: DateObjType = {};
-const setLastDay: DateObjType = {};
+const obj : DateObjType ={}
+const setFirstDay = { ...obj };
+const setLastDay = { ...obj };
 export const initState = {
   setFirstDay,
-  setLastDay,
+  setLastDay
 };
 
 export enum REDUCER_ACTION_TYPE {
@@ -19,7 +19,7 @@ export enum REDUCER_ACTION_TYPE {
 
 type ReducerAction = {
   type: REDUCER_ACTION_TYPE;
-  handle?: Dayjs | null ;
+  handle?: Dayjs | null;
 };
 
 export const reducer = (state: typeof initState, action: ReducerAction) => {
@@ -27,7 +27,7 @@ export const reducer = (state: typeof initState, action: ReducerAction) => {
     case REDUCER_ACTION_TYPE.SET_FIRST_DAY:
       return { ...state, setFirstDay: action.handle ?? {} };
     case REDUCER_ACTION_TYPE.SET_LAST_DAY:
-      return { ...state, setLastDay: action.handle ?? {} };
+      return { ...state, setFirstDay: action.handle ?? {} };
     default:
       throw new Error();
   }

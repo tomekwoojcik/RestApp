@@ -1,15 +1,8 @@
 import { Dayjs } from "dayjs";
 
-type DateObjType = {
-  $d?: string;
-};
-
-const obj: DateObjType = {};
-const setFirstDay: DateObjType = {};
-const setLastDay: DateObjType = {};
 export const initState = {
-  setFirstDay,
-  setLastDay,
+  setFirstDay:{},
+  setLastDay:{},
 };
 
 export enum REDUCER_ACTION_TYPE {

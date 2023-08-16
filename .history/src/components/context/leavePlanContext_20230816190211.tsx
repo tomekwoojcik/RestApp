@@ -84,10 +84,10 @@ export function LeavePlanProvider({ children }: propsModel) {
     setWarnMess(warnMess);
     setBooleanValue(false);
   };
-const {$d} = state.setFirstDay
+console.log(state.setFirstDay)
   const leavePlanHandle = () => {
     const todayDate = new Date();
-    const firstDayOfLeave = dayjs()
+    const firstDayOfLeave = new Date();
     const lastDayOfLeave = new Date();
     if (leaveData.getData().length != 0) {
       const parseArr = leaveData

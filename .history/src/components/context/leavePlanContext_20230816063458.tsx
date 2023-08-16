@@ -13,14 +13,18 @@ import {
   REDUCER_ACTION_TYPE,
   reducer,
 } from "../../hooks/leavePlanHooks";
-import dayjs, { Dayjs } from "dayjs";
+import { object } from "prop-types";
+import { Dayjs } from "dayjs";
 interface LeavePlanItemModel {
   subtractDay: number;
   howMuchTimeToStart: number;
 }
 
 interface LeavePlanContextModel {
-  handleDay: (type: REDUCER_ACTION_TYPE, e: Dayjs | null) => void;
+  handleDay: (
+    type: REDUCER_ACTION_TYPE,
+    e: Dayjs | null,
+  ) => void;
   leaveArr: string[];
   setLeave: React.Dispatch<React.SetStateAction<string>>;
   setPersonReplace: React.Dispatch<any>;
@@ -40,7 +44,8 @@ const LeavePlanContext = createContext({} as LeavePlanContextModel);
 
 export function LeavePlanProvider({ children }: propsModel) {
   const [state, dispatch] = useReducer(reducer, initState);
-
+  const [firstDate, setFirstDate] = useState<any>();
+  const [lastDate, setLastDate] = useState<any>();
   const [leave, setLeave] = useState<string>("none");
   const [personReplace, setPersonReplace] = useState<string>("none");
   const [dataRender, setDataRender] = useState<any[]>([]);
@@ -70,7 +75,10 @@ export function LeavePlanProvider({ children }: propsModel) {
     "Tom Yellow",
   ];
 
-  const handleDay = (type: REDUCER_ACTION_TYPE, e: Dayjs | null) => {
+  const handleDay = (
+    type: REDUCER_ACTION_TYPE,
+    e: Dayjs | null,
+  ) => {
     dispatch({
       type: type,
       handle: e,
@@ -84,11 +92,11 @@ export function LeavePlanProvider({ children }: propsModel) {
     setWarnMess(warnMess);
     setBooleanValue(false);
   };
-const {$d} = state.setFirstDay
+
   const leavePlanHandle = () => {
     const todayDate = new Date();
-    const firstDayOfLeave = dayjs()
-    const lastDayOfLeave = new Date();
+    const firstDayOfLeave = new Date(firstDate);
+    const lastDayOfLeave = new Date(lastDate);
     if (leaveData.getData().length != 0) {
       const parseArr = leaveData
         .getData()

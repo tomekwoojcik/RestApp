@@ -1,15 +1,7 @@
 import { Dayjs } from "dayjs";
-
-type DateObjType = {
-  $d?: string;
-};
-
-const obj: DateObjType = {};
-const setFirstDay: DateObjType = {};
-const setLastDay: DateObjType = {};
 export const initState = {
-  setFirstDay,
-  setLastDay,
+  setFirstDay: Dayjs,
+  setLastDay: Dayjs,
 };
 
 export enum REDUCER_ACTION_TYPE {
@@ -19,7 +11,7 @@ export enum REDUCER_ACTION_TYPE {
 
 type ReducerAction = {
   type: REDUCER_ACTION_TYPE;
-  handle?: Dayjs | null ;
+  handle?: Dayjs | null;
 };
 
 export const reducer = (state: typeof initState, action: ReducerAction) => {

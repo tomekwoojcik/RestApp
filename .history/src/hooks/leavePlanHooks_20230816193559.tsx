@@ -1,6 +1,8 @@
 import { Dayjs } from "dayjs";
 
-type DateObjType = {
+export type DateObjType = {
+    $D?: number,
+
   $d?: string;
 };
 

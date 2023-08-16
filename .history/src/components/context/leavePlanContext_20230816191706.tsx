@@ -12,6 +12,7 @@ import {
   initState,
   REDUCER_ACTION_TYPE,
   reducer,
+  DateObjType,
 } from "../../hooks/leavePlanHooks";
 import dayjs, { Dayjs } from "dayjs";
 interface LeavePlanItemModel {
@@ -70,7 +71,7 @@ export function LeavePlanProvider({ children }: propsModel) {
     "Tom Yellow",
   ];
 
-  const handleDay = (type: REDUCER_ACTION_TYPE, e: Dayjs | null) => {
+  const handleDay = (type: REDUCER_ACTION_TYPE, e: DateObjType | null) => {
     dispatch({
       type: type,
       handle: e,
@@ -84,7 +85,7 @@ export function LeavePlanProvider({ children }: propsModel) {
     setWarnMess(warnMess);
     setBooleanValue(false);
   };
-const {$d} = state.setFirstDay
+console.log(state.setFirstDay.$d)
   const leavePlanHandle = () => {
     const todayDate = new Date();
     const firstDayOfLeave = dayjs()
