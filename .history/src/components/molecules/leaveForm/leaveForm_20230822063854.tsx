@@ -25,11 +25,7 @@ const LeaveForm: FC = () => {
             onChange={(e:Dayjs| null) => handleDay(REDUCER_ACTION_TYPE.FIRST_DAY, e)}
             label="The first day of leave"
           />
-          <DatePicker
-            defaultValue={dayjs(new Date())}
-            onChange={(e:Dayjs| null) => handleDay(REDUCER_ACTION_TYPE.LAST_DAY, e)}
-            label="The last day of leave"
-          />
+          
           <TextField
             onChange={(e:ChangeEvent<HTMLInputElement>) => handleValue(e, REDUCER_ACTION_TYPE.KIND_LEAVE)}
             className="urlopApp__leaveForm"
@@ -45,21 +41,7 @@ const LeaveForm: FC = () => {
               </MenuItem>
             ))}
           </TextField>
-          <TextField
-            onChange={(e:ChangeEvent<HTMLInputElement>) => handleValue(e, REDUCER_ACTION_TYPE.REPLACE_PERSON)}
-            className="urlopApp__leaveFormTextField urlopApp__leaveForm"
-            variant="outlined"
-            select
-            value={state.replacePerson}
-            defaultValue={personReplaceArr[0]}
-            label="Choose a person to replace you."
-          >
-            {personReplaceArr.map(el => (
-              <MenuItem key={el} value={el}>
-                {el}
-              </MenuItem>
-            ))}
-          </TextField>
+     
           <Button onClick={() => leavePlanHandle()} variant="contained">
             Send request.
           </Button>
