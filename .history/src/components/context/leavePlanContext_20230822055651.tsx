@@ -70,6 +70,7 @@ const LeavePlanContext = createContext({} as LeavePlanContextModel);
 export function LeavePlanProvider({ children }: propsModel) {
   const [state, dispatch] = useReducer(reducer, initState);
   const [dataRenderConfirm, setDataRenderConfirm] = useState<object[]>([]);
+  const [count, setCount] = useState<number>(1);
   const leaveData = new Data("leavePlan");
   const leaveConfirmData = new Data("leaveConfirm");
   const leaveCancelData = new Data("leaveCancel");
@@ -106,11 +107,6 @@ export function LeavePlanProvider({ children }: propsModel) {
       type: type,
       payload: e.target.value,
     });
-  
-      const setCount = () =>  dispatch({
-      type: REDUCER_ACTION_TYPE.COUNTER,
-      payload: state.counter -= 100000,
-    })
 
   const destructObj = (day: any) => {
     if (day != state.firstDay) {
@@ -200,9 +196,11 @@ export function LeavePlanProvider({ children }: propsModel) {
     );
     const arrLeavePlanDataGet = [...leavePlanDataGet, leaveObj];
     leaveData.setData(arrLeavePlanDataGet);
-    setCount();
+    dispatch({
+      type: REDUCER_ACTION_TYPE.COUNTER,
+      payload: state.counter += 1,
+    })
   };
-
 
   useEffect(() => {
     const leaveDataRender = () => {
@@ -213,7 +211,7 @@ export function LeavePlanProvider({ children }: propsModel) {
       const filter = filterData(data);
       dispatch({
         type: REDUCER_ACTION_TYPE.DATA_RENDER,
-        payload: [...filter],
+        payload: [...data, filter[filter.length - 1]],
       });
       setDataRenderConfirm(filterData(confirmLeaveArr));
       return filterData;
@@ -258,14 +256,13 @@ export function LeavePlanProvider({ children }: propsModel) {
         if (state.booleanValue == true) {
           removeObjOfDatabase(leaveConfirmData, leaveData, item, e);
         }
-        setCount();
+        setCount(count + 1);
         break;
       }
       case "Cancel": {
         const item = searchLeaveObj({ leaveData, e });
         removeObjOfDatabase(leaveCancelData, leaveData, item, e);
-        setCount();
-        break;
+        setCount(count + 1);
       }
     }
   };

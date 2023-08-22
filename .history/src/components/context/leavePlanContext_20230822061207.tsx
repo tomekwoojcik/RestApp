@@ -109,7 +109,7 @@ export function LeavePlanProvider({ children }: propsModel) {
   
       const setCount = () =>  dispatch({
       type: REDUCER_ACTION_TYPE.COUNTER,
-      payload: state.counter -= 100000,
+      payload: state.counter = state.counter + 1,
     })
 
   const destructObj = (day: any) => {
@@ -189,6 +189,8 @@ export function LeavePlanProvider({ children }: propsModel) {
       );
       return;
     }
+
+  
 
     const leavePlanDataGet = leaveData.getData();
     const leaveObj = new Leave(

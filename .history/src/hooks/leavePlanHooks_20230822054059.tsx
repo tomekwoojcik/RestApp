@@ -17,7 +17,6 @@ export const initState = {
   dataConfirmedRender: [],
   arrayErrorMessage: [],
   booleanValue: true,
-  counter: 1,
 };
 
 export enum REDUCER_ACTION_TYPE {
@@ -29,7 +28,7 @@ export enum REDUCER_ACTION_TYPE {
   DATA_CONFIRMED_RENDER,
   ARR_ERROR_MESSAGE,
   SET_BOOLEAN_VALUE,
-  COUNTER,
+  Counter,
 }
 
 type ReducerAction = {
@@ -49,12 +48,11 @@ export const reducer = (state: typeof initState, action: ReducerAction) => {
       return { ...state, replacePerson: action.payload ?? "" };
     case REDUCER_ACTION_TYPE.ARR_ERROR_MESSAGE:
       return { ...state, arrayErrorMessage: action.payload ?? {} };
-    case REDUCER_ACTION_TYPE.SET_BOOLEAN_VALUE:
+    case REDUCER_ACTION_TYPE.SET_BOOLEAN_VALUE: 
       return { ...state, booleanValue: action.payload ?? true };
-    case REDUCER_ACTION_TYPE.DATA_RENDER:
+      case REDUCER_ACTION_TYPE.DATA_RENDER:
       return { ...state, dataRender: action.payload ?? [] };
-    case REDUCER_ACTION_TYPE.COUNTER:
-      return { ...state, counter: action.payload ?? 1 };
+  
     default:
       throw new Error();
   }
