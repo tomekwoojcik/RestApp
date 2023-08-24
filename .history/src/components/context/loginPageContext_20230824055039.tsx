@@ -73,6 +73,27 @@ export function LoginPageProvider({ children }: propsModel) {
       );
       return;
     }
+
+    try {
+      const res: ResponseModel = await fetch(" http://localhost:3000/login", {
+        method: "post",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: `${state.loginInput}`,
+          password: `${state.passwordInput}`,
+        }),
+      }).then(response => response.json());
+      const { accessToken, user }: ResponseModel = res;
+      const resUser: userModel = await fetch(
+        ` http://localhost:3000/600/users/${user.id}`,
+        {
+          method: "get",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${accessToken}`,
+          },
+        },
+      ).then(response => response.json());
       dispatch({
         type: REDUCER_ACTION_TYPE.HANDLE_USER,
         handle: resUser,

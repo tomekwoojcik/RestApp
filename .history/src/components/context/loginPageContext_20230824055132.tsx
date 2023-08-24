@@ -73,6 +73,17 @@ export function LoginPageProvider({ children }: propsModel) {
       );
       return;
     }
+      const { accessToken, user }: ResponseModel = res;
+      const resUser: userModel = await fetch(
+        ` http://localhost:3000/600/users/${user.id}`,
+        {
+          method: "get",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${accessToken}`,
+          },
+        },
+      ).then(response => response.json());
       dispatch({
         type: REDUCER_ACTION_TYPE.HANDLE_USER,
         handle: resUser,
