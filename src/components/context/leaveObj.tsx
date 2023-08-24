@@ -1,7 +1,3 @@
-/* eslint-disable max-len */
-/* eslint-disable eqeqeq */
-/* eslint-disable arrow-parens */
-/* eslint-disable import/no-extraneous-dependencies */
 import { nanoid } from 'nanoid';
 import Data from './localhostContext';
 

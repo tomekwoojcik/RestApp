@@ -85,7 +85,7 @@ export function LoginPageProvider({ children }: propsModel) {
         type: REDUCER_ACTION_TYPE.IS_LOGGED,
         toggle: true,
       });
-    } catch (error : any) {
+    } catch (error:any) {
       throw new Error(error.message);
     }
   };

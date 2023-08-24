@@ -21,7 +21,7 @@ const LoginPageContext = createContext({} as LoginPageContextModel);
 export function LoginPageProvider({ children }: propsModel) {
   const [state, dispatch] = useReducer(reducer, initState);
   const data = new Data("recoveryUserList");
-  const userLocalStorage = new Data("userLocalStorage");
+  const userKeyLocalStorage =  new Data("userKey");
   const dataEl = data.getData();
   const nav = useNavigate();
   const handleValue = (
@@ -48,17 +48,18 @@ export function LoginPageProvider({ children }: propsModel) {
       errors: [...state.errorArr, textError],
     });
   };
+  console.log(state.loginInput.length);
   const toggleValue = () => {
     if (filterLogin.length !== 0) {
       handleError(
-        "The user is not correct, please try again later or contact your administrator.",
+        "The user is being recovered, please try again later or contact your administrator.",
       );
       return;
     }
     if (state.loginInput.length < 5) {
       console.log(true);
       handleError(
-        "The user is being recovered, please try again later or contact your administrator.",
+        "The user is not correct, please try again later or contact your administrator.",
       );
       return;
     }
@@ -76,6 +77,7 @@ export function LoginPageProvider({ children }: propsModel) {
 
     try {
       const resClient = responseClient(state.loginInput, state.passwordInput);
+      console.log(resClient);
       const resUser = await responseUser(await resClient);
       dispatch({
         type: REDUCER_ACTION_TYPE.HANDLE_USER,
@@ -85,7 +87,7 @@ export function LoginPageProvider({ children }: propsModel) {
         type: REDUCER_ACTION_TYPE.IS_LOGGED,
         toggle: true,
       });
-    } catch (error : any) {
+    } catch (error:any) {
       throw new Error(error.message);
     }
   };

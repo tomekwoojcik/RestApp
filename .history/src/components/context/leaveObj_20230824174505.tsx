@@ -1,24 +1,20 @@
-/* eslint-disable max-len */
-/* eslint-disable eqeqeq */
-/* eslint-disable arrow-parens */
-/* eslint-disable import/no-extraneous-dependencies */
 import { nanoid } from 'nanoid';
 import Data from './localhostContext';
 
 
 class Leave {
-  leaveId: string | undefined
-  personId: string| undefined
-  kindLeave: string | undefined
-  startDateOfLeave: string | undefined
-  endDateOfLeave: string | undefined
-  replacementPerson: string | undefined
-  dateOfApplication: Date | undefined
-  holidayWorkerApprovalStatus: string | undefined
-  supervisorComment: any | undefined
-  supervisorApprovalStatus: any | undefined
+  leaveId?: string 
+  personId?: string 
+  kindLeave?: string 
+  startDateOfLeave?: string 
+  endDateOfLeave?: string 
+  replacementPerson?: string 
+  dateOfApplication: Date
+  holidayWorkerApprovalStatus?: string 
+  supervisorComment?: any 
+  supervisorApprovalStatus?: any 
 
-  constructor(id: string, leave: string, startDate: string, endDate: string, person: string) {
+  constructor(id?: string, leave?: string, startDate?: string, endDate?: string, person?: string) {
     this.leaveId = nanoid(10);
     this.personId = id;
     this.kindLeave = leave;
