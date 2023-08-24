@@ -7,12 +7,14 @@ import React, {
 import { useNavigate } from "react-router";
 import Data from "./localhostContext";
 import { propsModel } from "../../interface/interfaceProps";
+import { ResponseModel } from "../../interface/responseModel";
 import { LoginPageContextModel } from "../../interface/LoginPageContextModel";
 import {
   initState,
   reducer,
   REDUCER_ACTION_TYPE,
 } from "../../hooks/loginPageHooks";
+import { userModel } from "../../interface/userModel";
 import { responseClient } from "./responseClient";
 import { responseUser } from "./responseUser";
 

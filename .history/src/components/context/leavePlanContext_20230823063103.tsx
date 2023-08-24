@@ -3,6 +3,7 @@ import {
   createContext,
   useEffect,
   useReducer,
+  useState,
 } from "react";
 import Data from "./localhostContext";
 import Leave from "./leaveObj";
@@ -13,9 +14,56 @@ import {
   reducer,
   DateObjType,
 } from "../../hooks/leavePlanHooks";
-
-import { LeavePlanItemModel, ErrorMessageModel, DetailsModel, LeavePlanContextModel } from "../../interface/leavePlanModels";
 import { Dayjs } from "dayjs";
+import { DestructDetailsModel } from "../atoms/leavePlanDetailsRow/leavePlanDetailsRow";
+interface LeavePlanItemModel {
+  subtractDay: number;
+  howMuchTimeToStart: number;
+}
+interface ErrorMessageModel {
+  dateWarnMess: Date;
+  warnMess: string;
+}
+
+interface ObjectDataModel {
+   firstDay: DateObjType;
+    lastDay: DateObjType;
+    kindLeave: string;
+    replacePerson: string;
+}
+interface DetailsModel {
+  [x: string]: any;
+   personId: string;
+    kindLeave: string;
+    startDateOfLeave: string;
+    endDateOfLeave: string;
+    replacementPerson: string;
+    leaveId: string;
+    holidayWorkerApprovalStatus: string;
+}
+
+interface LeavePlanContextModel {
+  handleDay: (type: REDUCER_ACTION_TYPE, e: Dayjs | null) => void;
+  handleValue: (
+    e: ChangeEvent<HTMLInputElement>,
+    type: REDUCER_ACTION_TYPE,
+  ) => void;
+  state: {
+    firstDay: DateObjType;
+    lastDay: DateObjType;
+    kindLeave: string;
+    replacePerson: string;
+    arrayErrorMessage: ErrorMessageModel[];
+    dataRender: DetailsModel[];
+    dataRenderConfirm: DetailsModel[];
+  };
+  leaveArr: string[];
+  personReplaceArr: string[];
+  dayFun: (personId: string, leaveId: string) => LeavePlanItemModel[];
+  menuListArr: string[];
+  handleActionLeave: (e: any) => void;
+  leavePlanHandle: () => void; // Add this property to the interface
+}
 
 const LeavePlanContext = createContext({} as LeavePlanContextModel);
 
@@ -169,6 +217,7 @@ export function LeavePlanProvider({ children }: propsModel) {
         type: REDUCER_ACTION_TYPE.DATA_CONFIRMED_RENDER,
         payload: [...confirmLeaveArr],
       })
+      // setDataRenderConfirm(filterData(confirmLeaveArr));
       return filterData;
     };
 

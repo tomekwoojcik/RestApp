@@ -3,6 +3,7 @@ import {
   createContext,
   useEffect,
   useReducer,
+  useState,
 } from "react";
 import Data from "./localhostContext";
 import Leave from "./leaveObj";
@@ -13,14 +14,62 @@ import {
   reducer,
   DateObjType,
 } from "../../hooks/leavePlanHooks";
-
-import { LeavePlanItemModel, ErrorMessageModel, DetailsModel, LeavePlanContextModel } from "../../interface/leavePlanModels";
 import { Dayjs } from "dayjs";
+import { DestructDetailsModel } from "../atoms/leavePlanDetailsRow/leavePlanDetailsRow";
+interface LeavePlanItemModel {
+  subtractDay: number;
+  howMuchTimeToStart: number;
+}
+interface ErrorMessageModel {
+  dateWarnMess: Date;
+  warnMess: string;
+}
+
+interface ObjectDataModel {
+   firstDay: DateObjType;
+    lastDay: DateObjType;
+    kindLeave: string;
+    replacePerson: string;
+}
+interface DetailsModel {
+  [x: string]: any;
+   personId: string;
+    kindLeave: string;
+    startDateOfLeave: string;
+    endDateOfLeave: string;
+    replacementPerson: string;
+    leaveId: string;
+    holidayWorkerApprovalStatus: string;
+}
+
+interface LeavePlanContextModel {
+  handleDay: (type: REDUCER_ACTION_TYPE, e: Dayjs | null) => void;
+  handleValue: (
+    e: ChangeEvent<HTMLInputElement>,
+    type: REDUCER_ACTION_TYPE,
+  ) => void;
+  state: {
+    firstDay: DateObjType;
+    lastDay: DateObjType;
+    kindLeave: string;
+    replacePerson: string;
+    arrayErrorMessage: ErrorMessageModel[];
+    dataRender: DetailsModel[];
+  };
+  leaveArr: string[];
+  personReplaceArr: string[];
+  dayFun: (personId: string, leaveId: string) => LeavePlanItemModel[];
+  menuListArr: string[];
+  handleActionLeave: (e: any) => void;
+  dataRenderConfirm: object[];
+  leavePlanHandle: () => void; // Add this property to the interface
+}
 
 const LeavePlanContext = createContext({} as LeavePlanContextModel);
 
 export function LeavePlanProvider({ children }: propsModel) {
   const [state, dispatch] = useReducer(reducer, initState);
+  const [dataRenderConfirm, setDataRenderConfirm] = useState<object[]>([]);
   const leaveData = new Data("leavePlan");
   const leaveConfirmData = new Data("leaveConfirm");
   const leaveCancelData = new Data("leaveCancel");
@@ -158,7 +207,9 @@ export function LeavePlanProvider({ children }: propsModel) {
   useEffect(() => {
     const leaveDataRender = () => {
       const data = leaveData.getData();
+      console.log(data);
       const confirmLeaveArr = leaveConfirmData.getData();
+      console.log(confirmLeaveArr);
       const filterData = (arr: []) =>
         arr.filter((el: any) => el.personId === userData.id);
       dispatch({
@@ -169,8 +220,10 @@ export function LeavePlanProvider({ children }: propsModel) {
         type: REDUCER_ACTION_TYPE.DATA_CONFIRMED_RENDER,
         payload: [...confirmLeaveArr],
       })
+      // setDataRenderConfirm(filterData(confirmLeaveArr));
       return filterData;
     };
+    console.log(state.dataConfirmedRender);
 
     leaveDataRender();
   }, [state.counter]);
@@ -183,8 +236,9 @@ export function LeavePlanProvider({ children }: propsModel) {
 
   const menuListArr = ["Confirm", "Cancel"];
   const searchLeaveObj = (obj: { leaveData: any; e: any }) => {
-    const data = new Data(obj.leaveData.databaseName)
-    const [item] = data.getData().filter((el: any) => el.leaveId == obj.e.leaveId.leaveId);
+    const [item] = obj.leaveData
+      .getData()
+      .filter((el: { leaveId: any }) => el.leaveId == obj.e.leaveId);
     return item;
   };
 
@@ -199,16 +253,17 @@ export function LeavePlanProvider({ children }: propsModel) {
     toWhichDatabaseWeSendTheData.setData(newData);
     const filterData = toWhichDatabaseWeRemoveTheData
       .getData()
-      .filter((el: any) => el.leaveId != e.leaveId.leaveId);
+      .filter((el: any) => el.leaveId != e.leaveId);
     console.log(filterData);
     toWhichDatabaseWeRemoveTheData.setData(filterData);
   };
 
-  const handleActionLeave = (e: any) => {
+  const handleActionLeave = (e: ) => {
+    console.log(typeof e);
     switch (e.name) {
       case "Confirm": {
         const item = searchLeaveObj({ leaveData, e });
-        console.log(state.booleanValue);
+        console.log('item:', item);
         if (state.booleanValue == true) {
           removeObjOfDatabase(leaveConfirmData, leaveData, item, e);
         }
@@ -235,6 +290,7 @@ export function LeavePlanProvider({ children }: propsModel) {
         dayFun,
         menuListArr,
         handleActionLeave,
+        dataRenderConfirm,
       }}
     >
       {children}

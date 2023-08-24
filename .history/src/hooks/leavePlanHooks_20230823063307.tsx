@@ -1,3 +1,6 @@
+import { Dayjs } from "dayjs";
+import { object } from "prop-types";
+
 export type DateObjType = {
   $d?: string;
 };

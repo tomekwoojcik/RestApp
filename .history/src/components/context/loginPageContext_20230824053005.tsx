@@ -7,12 +7,14 @@ import React, {
 import { useNavigate } from "react-router";
 import Data from "./localhostContext";
 import { propsModel } from "../../interface/interfaceProps";
+import { ResponseModel } from "../../interface/responseModel";
 import { LoginPageContextModel } from "../../interface/LoginPageContextModel";
 import {
   initState,
   reducer,
   REDUCER_ACTION_TYPE,
 } from "../../hooks/loginPageHooks";
+import { userModel } from "../../interface/userModel";
 import { responseClient } from "./responseClient";
 import { responseUser } from "./responseUser";
 
@@ -76,7 +78,17 @@ export function LoginPageProvider({ children }: propsModel) {
 
     try {
       const resClient = responseClient(state.loginInput, state.passwordInput);
-      const resUser = await responseUser(await resClient);
+      const resUser = responseUser( resClient);
+      // const resUser: userModel = await fetch(
+      //   ` http://localhost:3000/600/users/${(await resClient).user.id}`,
+      //   {
+      //     method: "get",
+      //     headers: {
+      //       "Content-Type": "application/json",
+      //       Authorization: `Bearer ${(await resClient).accessToken}`,
+      //     },
+      //   },
+      // ).then(response => response.json());
       dispatch({
         type: REDUCER_ACTION_TYPE.HANDLE_USER,
         handle: resUser,

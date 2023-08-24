@@ -1,7 +1,11 @@
+import { Dayjs } from "dayjs";
+import { object } from "prop-types";
+
 export type DateObjType = {
   $d?: string;
 };
 
+const obj: DateObjType = {};
 const firstDay: DateObjType = {};
 const lastDay: DateObjType = {};
 export const initState = {
