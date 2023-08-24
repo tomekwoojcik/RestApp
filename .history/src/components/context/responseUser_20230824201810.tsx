@@ -7,7 +7,6 @@ interface ResClientModel {
 export const responseUser = async (
   resClient: ResClientModel,
 ): Promise<userModel> => {
-  console.log(localStorage.getItem("foo"));
   const resUser: userModel = await fetch(
     ` http://localhost:3000/600/users/${resClient.user.id}`,
     {

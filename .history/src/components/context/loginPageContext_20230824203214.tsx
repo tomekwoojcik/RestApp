@@ -77,9 +77,8 @@ export function LoginPageProvider({ children }: propsModel) {
     try {
       const resClient = await responseClient(state.loginInput, state.passwordInput);
       console.log(resClient);
-      localStorage.setItem("token", resClient.accessToken);
+      localStorage.setItem("foo", "bar");
       const resUser = await responseUser(resClient);
-      console.log(resUser);
       dispatch({
         type: REDUCER_ACTION_TYPE.HANDLE_USER,
         handle: resUser,
