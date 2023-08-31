@@ -13,7 +13,7 @@ const UserContext = createContext({} as UserModel);
 
 export function UserProvider({ children }: propsModel) {
   const userData = new Data("user");
-  const data = userData.setData(useNavigateq);
+  const data = userData.setData(useNavigate);
   const nav = useNavigate();
 
   const userButtons = [

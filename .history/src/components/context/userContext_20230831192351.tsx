@@ -7,13 +7,14 @@ interface UserModel {
   userButtons: object[];
   personData: any;
   data: any;
+  navigate: any;
 }
 
 const UserContext = createContext({} as UserModel);
 
 export function UserProvider({ children }: propsModel) {
   const userData = new Data("user");
-  const data = userData.setData(useNavigateq);
+  const data = userData.setData(useNavigate);
   const nav = useNavigate();
 
   const userButtons = [
@@ -23,9 +24,19 @@ export function UserProvider({ children }: propsModel) {
       routes: "plan",
     },
     {
+      key: 2,
+      buttonName: "Submit a leave request.",
+      routes: "request",
+    },
+    {
       key: 3,
       buttonName: "Messages",
       routes: "messages",
+    },
+    {
+      key: 4,
+      buttonName: "User Details",
+      routes: "userDetails",
     },
   ];
   const personData = {
@@ -36,12 +47,20 @@ export function UserProvider({ children }: propsModel) {
       `Birth date: ${data.birthDate}`,
       `Gender: ${data.gender}`,
     ],
+    addressData: [
+      `Address: ${data.address.address}`,
+      `Post code: ${data.address.postalCode}`,
+      `City: ${data.address.city}`,
+      `State: ${data.address.state}`,
+    ],
     contactData: [`Work email: ${data.email}`, `Phone number: ${data.phone}`],
     jobData: [
       `Work department: ${data.company.department}`,
       `Position: ${data.company.title}`,
       `Workplace: ${data.company.address.address}, ${data.company.address.city}`,
     ],
+    universityData: [`University: ${data.university}`],
+    image: data.image,
   };
 
   return (
