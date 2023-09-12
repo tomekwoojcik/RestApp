@@ -279,7 +279,6 @@ export function LeavePlanProvider({ children }: propsModel) {
         dayFun,
         menuListArr,
         handleActionLeave,
-        tableHeaders,
       }}
     >
       {children}

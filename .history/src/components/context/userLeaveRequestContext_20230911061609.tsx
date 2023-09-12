@@ -25,7 +25,6 @@ export interface userLeaveRequestModel {
     leaveRequestDataArr: leaveObjModel[];
   };
   cancelConfirmLeave: (id: string) => void;
-  tableHeaders: string[];
 }
 
 export const UserLeaveRequestContext = createContext(
@@ -80,7 +79,6 @@ export function UserLeaveRequestProvider({ children }: propsModel) {
       value={{
         state,
         cancelConfirmLeave,
-        tableHeaders,
       }}
     >
       {children}

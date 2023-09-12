@@ -37,17 +37,6 @@ export function LeavePlanProvider({ children }: propsModel) {
     "Tom Yellow",
   ];
 
-  const tableHeaders: string[] = [
-    "Start date leave.",
-    "End date leave.",
-    "Kind of leave.",
-    "Replacement person.",
-    "Number of days until the start of the leave.",
-    "Number of days of leave.",
-    "Leave status.",
-    "Employee leave approval status.",
-  ];
-
   const handleDay = (type: REDUCER_ACTION_TYPE, e: Dayjs | null) => {
     dispatch({
       type: type,
@@ -193,24 +182,22 @@ export function LeavePlanProvider({ children }: propsModel) {
   useEffect(() => {
     const leaveDataRender = () => {
       const data = leaveData.getData();
-      const confirmLeaveArr: [] = leaveConfirmData.getData();
-      console.log(confirmLeaveArr);
+      const confirmLeaveArr = leaveConfirmData.getData();
       const filterData = (arr: []) =>
         arr.filter((el: any) => el.personId === userData.id);
       dispatch({
         type: REDUCER_ACTION_TYPE.DATA_RENDER,
         payload: [...filterData(data)],
       });
-
       dispatch({
         type: REDUCER_ACTION_TYPE.DATA_CONFIRMED_RENDER,
         payload: [...confirmLeaveArr],
       });
-
       return filterData;
     };
-
-    leaveDataRender();
+    if (leaveConfirmData.getData() != 0) {
+      leaveDataRender();
+    }
   }, [state.counter]);
 
   const leaveObj = new Leave();
@@ -279,7 +266,6 @@ export function LeavePlanProvider({ children }: propsModel) {
         dayFun,
         menuListArr,
         handleActionLeave,
-        tableHeaders,
       }}
     >
       {children}

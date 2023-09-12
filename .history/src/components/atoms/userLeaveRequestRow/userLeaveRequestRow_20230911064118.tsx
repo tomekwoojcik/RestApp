@@ -1,11 +1,10 @@
 import { FC } from "react";
 import { leaveObjModel } from "../../context/userLeaveRequestContext";
 import CancelLeaveButton from "../cancelLeaveButton/cancelLeaveButton";
-import DetailsModel from "../../../interface/detailsInterface";
 
 interface propsModel {
   key: string;
-  props: leaveObjModel | DetailsModel;
+  props: leaveObjModel;
 }
 
 const UserLeaveRequestRow: FC<propsModel> = props => {

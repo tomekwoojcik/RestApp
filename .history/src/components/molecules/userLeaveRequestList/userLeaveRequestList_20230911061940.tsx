@@ -1,15 +1,17 @@
 import { FC, useContext } from "react";
 import {
   UserLeaveRequestContext,
+  leaveObjModel,
 } from "../../context/userLeaveRequestContext";
+import UserLeaveRequestRow from "../../atoms/userLeaveRequestRow/userLeaveRequestRow";
 import LeavePlanTable from "../leavePlanTable/leavePlanTable";
 
 const UserLeaveRequestList: FC = () => {
-  const { state, tableHeaders } = useContext(UserLeaveRequestContext);
+  const { state } = useContext(UserLeaveRequestContext);
   const kindState: string = typeof state.leaveRequestDataArr
   return (
     state.leaveRequestDataArr.length !== 0 || kindState == "array" ?
-    <LeavePlanTable arr = {state.leaveRequestDataArr} tableHeaders ={tableHeaders} rowComponent={"requestRow"} /> : <p>{"You currently have no approved leave."}</p>
+    <LeavePlanTable arr = {state.leaveRequestDataArr} /> : <p>{"You currently have no approved leave."}</p>
   );
 };
 

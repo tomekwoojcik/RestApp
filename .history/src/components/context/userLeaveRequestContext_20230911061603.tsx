@@ -25,7 +25,6 @@ export interface userLeaveRequestModel {
     leaveRequestDataArr: leaveObjModel[];
   };
   cancelConfirmLeave: (id: string) => void;
-  tableHeaders: string[];
 }
 
 export const UserLeaveRequestContext = createContext(
@@ -36,21 +35,19 @@ export function UserLeaveRequestProvider({ children }: propsModel) {
   const leaveData = new Data("leaveConfirm");
   const cancelConfirmLeaveData = new Data("cancelConfirmLeaveData");
 
-  const tableHeaders: string[] = [
-    "Start date leave.",
-    "End date leave.",
-    "Kind of leave.",
-    "Status leave.",
-    "Replacement person.",
-  ];
+  const tableHeaders: string[] = ["Start date leave.",
+          "End date leave.",
+          "Kind of leave.",
+          "Status leave.",
+          "Replacement person."]
+
 
   const cancelObj = (leaveId: string): void => {
     const data = cancelConfirmLeaveData.getData();
-    const leaveObj = leaveData
-      .getData()
-      .filter((obj: leaveObjModel) => obj.leaveId == leaveId);
-    cancelConfirmLeaveData.setData([...data, ...leaveObj]);
-  };
+    const leaveObj = leaveData.getData().filter((obj: leaveObjModel) => obj.leaveId == leaveId);
+    cancelConfirmLeaveData.setData([...data, ...leaveObj])
+
+  }
 
   const cancelConfirmLeave = (leaveId: string): void => {
     cancelObj(leaveId);
@@ -64,6 +61,7 @@ export function UserLeaveRequestProvider({ children }: propsModel) {
       payload: state.renderCount += 1,
     });
   };
+
 
   useEffect(() => {
     const renderLeaveRequest = () => {
@@ -80,7 +78,6 @@ export function UserLeaveRequestProvider({ children }: propsModel) {
       value={{
         state,
         cancelConfirmLeave,
-        tableHeaders,
       }}
     >
       {children}

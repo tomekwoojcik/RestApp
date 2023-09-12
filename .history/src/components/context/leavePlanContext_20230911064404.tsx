@@ -37,16 +37,14 @@ export function LeavePlanProvider({ children }: propsModel) {
     "Tom Yellow",
   ];
 
-  const tableHeaders: string[] = [
-    "Start date leave.",
-    "End date leave.",
-    "Kind of leave.",
-    "Replacement person.",
-    "Number of days until the start of the leave.",
-    "Number of days of leave.",
-    "Leave status.",
-    "Employee leave approval status.",
-  ];
+  const tableHeaders: string[] = [<td>Start date leave.</td>
+              <td>End date leave.</td>
+              <td>Kind of leave.</td>
+              <td>Replacement person.</td>
+              <td>Number of days until the start of the leave.</td>
+              <td>Number of days of leave.</td>
+              <td>Leave status.</td>
+              <td>Employee leave approval status.</td>]
 
   const handleDay = (type: REDUCER_ACTION_TYPE, e: Dayjs | null) => {
     dispatch({
@@ -279,7 +277,6 @@ export function LeavePlanProvider({ children }: propsModel) {
         dayFun,
         menuListArr,
         handleActionLeave,
-        tableHeaders,
       }}
     >
       {children}

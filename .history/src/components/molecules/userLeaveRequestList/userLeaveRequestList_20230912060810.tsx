@@ -1,7 +1,9 @@
 import { FC, useContext } from "react";
 import {
   UserLeaveRequestContext,
+  leaveObjModel,
 } from "../../context/userLeaveRequestContext";
+import UserLeaveRequestRow from "../../atoms/userLeaveRequestRow/userLeaveRequestRow";
 import LeavePlanTable from "../leavePlanTable/leavePlanTable";
 
 const UserLeaveRequestList: FC = () => {
