@@ -17,7 +17,6 @@ interface UserModel {
   personData: any;
   data: any;
   navigate: any;
-  userRoleArr: string[];
 }
 
 const UserContext = createContext({} as UserModel);
@@ -49,9 +48,6 @@ export function UserProvider({ children }: propsModel) {
       routes: "userDetails",
     },
   ];
-
-  const userRoleArr: string[] = data.company.role;
-
   const personData = {
     basicData: [
       `Name and surname of the employee: ${data.firstName} ${data.lastName}`,
@@ -85,7 +81,6 @@ export function UserProvider({ children }: propsModel) {
         data,
         navigate,
         supervisorButtons,
-        userRoleArr,
       }}
     >
       {children}

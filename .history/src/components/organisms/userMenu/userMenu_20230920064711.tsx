@@ -12,9 +12,7 @@ const UserMenu: FC = () => {
 
   const roleToggle: boolean[] = data.company.role.map((role: string) => {
       return role === EmployeeRole.Director || role === EmployeeRole.Supervisor;
-  }).some((toggleEl: boolean) => toggleEl == true);
-
-  console.log(roleToggle);
+  });
 
   return (
     <div>
@@ -27,7 +25,7 @@ const UserMenu: FC = () => {
         <UserButtonsMenu props={userButtons} />
       </div>
 
-      { roleToggle ? 
+      { roleToggle[0] ? 
         (<div>
           <p>Supervisor Menu</p>
           <UserButtonsMenu props={supervisorButtons} />

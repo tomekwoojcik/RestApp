@@ -12,7 +12,7 @@ const UserMenu: FC = () => {
 
   const roleToggle: boolean[] = data.company.role.map((role: string) => {
       return role === EmployeeRole.Director || role === EmployeeRole.Supervisor;
-  }).some((toggleEl: boolean) => toggleEl == true);
+  }).some((toggleEl: boolean) => toggleEl != true);
 
   console.log(roleToggle);
 

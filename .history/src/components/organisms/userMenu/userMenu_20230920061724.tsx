@@ -3,18 +3,11 @@ import { FC, useContext } from "react";
 import UserButtonsMenu from "../../molecules/userButtonsMenu/userButtonsMenu";
 import UserContext from "../../context/userContext";
 import UserMenuModule from "./UserMenu.module.scss";
-import { EmployeeRole } from "../../molecules/requireAuth/RequireAuth";
 
 const UserMenu: FC = () => {
   const { data, userButtons, supervisorButtons, userRoleArr } = useContext(
     UserContext,
   );
-
-  const roleToggle: boolean[] = data.company.role.map((role: string) => {
-      return role === EmployeeRole.Director || role === EmployeeRole.Supervisor;
-  }).some((toggleEl: boolean) => toggleEl == true);
-
-  console.log(roleToggle);
 
   return (
     <div>
@@ -27,12 +20,12 @@ const UserMenu: FC = () => {
         <UserButtonsMenu props={userButtons} />
       </div>
 
-      { roleToggle ? 
-        (<div>
+      { data.company.role.filter((role:string) => role == ) ? null : (
+        <div>
           <p>Supervisor Menu</p>
           <UserButtonsMenu props={supervisorButtons} />
-        </div>) :null
-      }
+        </div>
+      )}
       <Button>LogOff</Button>
     </div>
   );

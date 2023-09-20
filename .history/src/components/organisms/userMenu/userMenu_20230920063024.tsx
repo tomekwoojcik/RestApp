@@ -10,12 +10,8 @@ const UserMenu: FC = () => {
     UserContext,
   );
 
-  const roleToggle: boolean[] = data.company.role.map((role: string) => {
-      return role === EmployeeRole.Director || role === EmployeeRole.Supervisor;
-  }).some((toggleEl: boolean) => toggleEl == true);
-
-  console.log(roleToggle);
-
+  const roleToggle: boolean = data.company.role.some((role: string) => role != EmployeeRole.Director || EmployeeRole.Supervisor);
+  
   return (
     <div>
       <div className={UserMenuModule.companyLogo} />
@@ -27,12 +23,12 @@ const UserMenu: FC = () => {
         <UserButtonsMenu props={userButtons} />
       </div>
 
-      { roleToggle ? 
-        (<div>
+      { roleToggle ? (
+        <div>
           <p>Supervisor Menu</p>
           <UserButtonsMenu props={supervisorButtons} />
-        </div>) :null
-      }
+        </div>
+      ): null}
       <Button>LogOff</Button>
     </div>
   );

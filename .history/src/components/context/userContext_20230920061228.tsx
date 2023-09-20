@@ -17,7 +17,6 @@ interface UserModel {
   personData: any;
   data: any;
   navigate: any;
-  userRoleArr: string[];
 }
 
 const UserContext = createContext({} as UserModel);
@@ -51,6 +50,7 @@ export function UserProvider({ children }: propsModel) {
   ];
 
   const userRoleArr: string[] = data.company.role;
+  console.log(userRoleArr);
 
   const personData = {
     basicData: [
@@ -85,7 +85,6 @@ export function UserProvider({ children }: propsModel) {
         data,
         navigate,
         supervisorButtons,
-        userRoleArr,
       }}
     >
       {children}

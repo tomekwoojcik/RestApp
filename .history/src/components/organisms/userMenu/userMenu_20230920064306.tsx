@@ -10,11 +10,14 @@ const UserMenu: FC = () => {
     UserContext,
   );
 
-  const roleToggle: boolean[] = data.company.role.map((role: string) => {
-      return role === EmployeeRole.Director || role === EmployeeRole.Supervisor;
-  }).some((toggleEl: boolean) => toggleEl == true);
-
+  const roleToggle: boolean = data.company.role.map((role: string) => {
+    if (role != EmployeeRole.Director || role != EmployeeRole.Supervisor) {
+      return false;
+    }
+    return true
+  });
   console.log(roleToggle);
+  console.log(data.company.role);
 
   return (
     <div>
@@ -28,10 +31,10 @@ const UserMenu: FC = () => {
       </div>
 
       { roleToggle ? 
-        (<div>
+        <div>
           <p>Supervisor Menu</p>
           <UserButtonsMenu props={supervisorButtons} />
-        </div>) :null
+        </div> :null
       }
       <Button>LogOff</Button>
     </div>
