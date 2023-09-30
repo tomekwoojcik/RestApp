@@ -29,6 +29,7 @@
     "react-scripts": "5.0.1",
     "sass": "^1.64.0",
     "styled-components": "^6.0.5",
+    "uuid": "^9.0.1",
     "web-vitals": "^2.1.4",
     "whatwg-fetch": "^3.6.2"
   },
@@ -62,6 +63,7 @@
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@mui/icons-material": "^5.14.0",
+    "@types/uuid": "^9.0.4",
     "@typescript-eslint/eslint-plugin": "^5.62.0",
     "@typescript-eslint/parser": "^6.2.0",
     "babel-loader": "^9.1.2",
