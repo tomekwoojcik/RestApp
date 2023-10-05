@@ -7,7 +7,7 @@ import { Table, TableBody, ThemeProvider } from "@mui/material";
 import FooterTable from "../../atoms/tableFooter/tableFooter";
 import theme from "../../context/themeContext";
 import { StyledTableCell, StyledTableRow } from "../../context/tableContext";
-import TablePaginationActions from "../../atoms/tablePaginationActions/tablePaginationActions";
+import TablePaginationActions from "../../atoms/tablePaginationActions/tablePaginationActions"
 interface TableProps {
   [x: string]: any;
   subordinatesArr: UserModel[];
@@ -19,9 +19,7 @@ const EmployeeTable: FC<TableProps> = () => {
     state,
     handleChangePage,
     handleChangeRowsPerPage,
-    getEmployeeLeave,
-    filterLeaveEmployee,
-    employeeLeaveTableHeaders
+    getEmployeeLeave
   } = useContext(SupervisorContext);
   return (
     <ThemeProvider theme={theme}>
@@ -44,8 +42,6 @@ const EmployeeTable: FC<TableProps> = () => {
               StyledTableRow={StyledTableRow}
               StyledTableCell={StyledTableCell}
               getEmployeeLeave={getEmployeeLeave}
-              filterLeaveEmployee={filterLeaveEmployee}
-              
             />
           ))}
         </TableBody>

@@ -3,7 +3,6 @@ export const initState = {
   page: 0,
   rowsPerPage: 5,
   employeeLeave: [],
-  employeeObj: {},
 };
 
 export enum REDUCER_ACTION_TYPE {
@@ -11,7 +10,6 @@ export enum REDUCER_ACTION_TYPE {
   HANDLE_CHANGE_PAGE,
   HANDLE_CHANGE_ROWS_PER_PAGE,
   GET_EMPLOYEE_LEAVE,
-  GET_EMPLOYEE_OBJ,
 }
 
 type ReducerAction = {
@@ -29,7 +27,5 @@ export const reducer = (state: typeof initState, action: ReducerAction) => {
       return { ...state, rowsPerPage: action.payload ?? 5 };
     case REDUCER_ACTION_TYPE.GET_EMPLOYEE_LEAVE:
       return { ...state, employeeLeave: action.payload ?? [] };
-    case REDUCER_ACTION_TYPE.GET_EMPLOYEE_OBJ:
-      return { ...state, employeeObj: action.payload ?? {} };
   }
 };

@@ -4,7 +4,7 @@ import {
   subordinatesArr,
 } from "../../context/supervisorContext";
 import EmployeeTable from "../../molecules/employeeTable/employeeTable";
-import EmployeeLeave from "../employeeLeave/employeeLeave";
+import EmployeeLeave from "../../molecules/employeeLeave/employeeLeave";
 
 const WorkersList: FC = () => {
   return (

@@ -9,6 +9,16 @@ interface SubordinatesRowProps {
   StyledTableCell: any;
   getEmployeeLeave: (subordinatesObj: UserModel) => void;
   filterLeaveEmployee: (subordinatesObj: UserModel) => void;
+
+  employeeLeaveTableHeaders: string[];
+  state: any;
+  handleChangePage: (
+    event: React.MouseEvent<HTMLButtonElement> | null,
+    newPage: number,
+  ) => void;
+  handleChangeRowsPerPage: (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => void;
 }
 
 const EmployeeTableRow: FC<SubordinatesRowProps> = ({

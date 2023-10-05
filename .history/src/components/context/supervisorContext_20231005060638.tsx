@@ -30,12 +30,12 @@ export interface SupervisorModel {
   getEmployeeLeave: (obj: UserModel) => void;
   employeeLeaveTableHeaders: string[];
   filterLeaveEmployee: (subordinatesObj: UserModel) => void;
-  handlePreviousPage: (previousPage: string) => void;
 }
 const userToken: string | any = localStorage.getItem("userToken");
 
 const userData = new Data("user");
 const getUserData: UserModel = userData.getData();
+const navigate = useNavigate();
 export const subordinatesArr: UserModel[] = (
   await getUsersResource(userToken)
 ).data.filter(
@@ -73,7 +73,6 @@ export function SupervisorProvider({ children }: propsModel) {
   const nav = useNavigate();
   const leaveData = new Data("leaveConfirm");
   const getEmployeeLeaveObj = new Data("getEmployeeLeaveObj");
-  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch({
@@ -133,8 +132,8 @@ export function SupervisorProvider({ children }: propsModel) {
     });
   };
 
-  const getEmployeeLeave = (userObj: UserModel) => {
-    navigate("employeeLeave");
+  const getEmployeeLeave = (userObj: UserModel) => { 
+  navigate("employeeLeave");
     getEmployeeLeaveObj.setData(userObj);
   };
 
@@ -147,8 +146,6 @@ export function SupervisorProvider({ children }: propsModel) {
     "Supervisor approval request status.",
     "Supervisor comment.",
   ];
-  const handlePreviousPage = (previousPage: string): void =>
-    navigate(previousPage);
 
   return (
     <SupervisorContext.Provider
@@ -160,7 +157,6 @@ export function SupervisorProvider({ children }: propsModel) {
         getEmployeeLeave,
         employeeLeaveTableHeaders,
         filterLeaveEmployee,
-        handlePreviousPage,
       }}
     >
       {children}

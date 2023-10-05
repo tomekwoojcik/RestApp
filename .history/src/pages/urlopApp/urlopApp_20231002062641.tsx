@@ -16,7 +16,6 @@ import RequireAuth, {
   EmployeeRole,
 } from "../../components/molecules/requireAuth/RequireAuth";
 import UnauthorizedPage from "../../components/organisms/unauthorizedPage/unauthorizedPage";
-import EmployeeLeave from "../../components/organisms/employeeLeave/employeeLeave";
 
 const UrlopApp: FC = () => {
   const data = new Data("user");
@@ -74,7 +73,7 @@ const UrlopApp: FC = () => {
                   />
                 }
               >
-                <Route path="workersList/employeeLeave" element={<EmployeeLeave />} />
+                <Route path="employeeLeave" element={<WorkersList />} />
               </Route>
             </Route>
           </Route>

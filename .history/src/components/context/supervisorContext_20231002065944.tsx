@@ -10,14 +10,11 @@ import {
   REDUCER_ACTION_TYPE,
 } from "../../hooks/supervisorHooks";
 import { useNavigate } from "react-router";
-import { leaveObjModel } from "./userLeaveRequestContext";
 export interface SupervisorModel {
   state: {
     subordinatesArr: UserModel[];
     page: number;
     rowsPerPage: number;
-    employeeLeave: leaveObjModel[];
-    employeeObj: any;
   };
   tableHeaders: string[];
   handleChangePage: (
@@ -27,10 +24,8 @@ export interface SupervisorModel {
   handleChangeRowsPerPage: (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => void;
-  getEmployeeLeave: (obj: UserModel) => void;
-  employeeLeaveTableHeaders: string[];
-  filterLeaveEmployee: (subordinatesObj: UserModel) => void;
-  handlePreviousPage: (previousPage: string) => void;
+  getEmployeeLeave : (obj:UserModel) => void
+  
 }
 const userToken: string | any = localStorage.getItem("userToken");
 
@@ -72,9 +67,7 @@ export function SupervisorProvider({ children }: propsModel) {
   const [state, dispatch] = useReducer(reducer, initState);
   const nav = useNavigate();
   const leaveData = new Data("leaveConfirm");
-  const getEmployeeLeaveObj = new Data("getEmployeeLeaveObj");
-  const navigate = useNavigate();
-
+  
   useEffect(() => {
     dispatch({
       type: REDUCER_ACTION_TYPE.GET_SUBORDINATES,
@@ -123,32 +116,16 @@ export function SupervisorProvider({ children }: propsModel) {
     });
   };
 
-  const filterLeaveEmployee = (userObj: UserModel) => {
-    const data: leaveObjModel[] = leaveData
-      .getData()
-      .filter((obj: leaveObjModel) => obj.personId == userObj.id);
+  const filterLeaveEmployee = (userObj:UserModel) => leaveData.getData().filter((obj: any) => obj.personId == userObj.id);
+
+  const getEmployeeLeave = (userObj:UserModel) => {
+    nav("employeeLeave");
+    const filterEmployee = filterLeaveEmployee(userObj);
     dispatch({
       type: REDUCER_ACTION_TYPE.GET_EMPLOYEE_LEAVE,
-      payload: data,
-    });
-  };
-
-  const getEmployeeLeave = (userObj: UserModel) => {
-    navigate("employeeLeave");
-    getEmployeeLeaveObj.setData(userObj);
-  };
-
-  const employeeLeaveTableHeaders: string[] = [
-    "Start date leave.",
-    "End date leave.",
-    "Kind of leave.",
-    "Employee's leave request status.",
-    "Replacement person.",
-    "Supervisor approval request status.",
-    "Supervisor comment.",
-  ];
-  const handlePreviousPage = (previousPage: string): void =>
-    navigate(previousPage);
+      payload: filterEmployee
+    })
+  }
 
   return (
     <SupervisorContext.Provider
@@ -158,9 +135,6 @@ export function SupervisorProvider({ children }: propsModel) {
         handleChangePage,
         handleChangeRowsPerPage,
         getEmployeeLeave,
-        employeeLeaveTableHeaders,
-        filterLeaveEmployee,
-        handlePreviousPage,
       }}
     >
       {children}

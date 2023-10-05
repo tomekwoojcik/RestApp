@@ -2,16 +2,14 @@ export const initState = {
   subordinatesArr: [],
   page: 0,
   rowsPerPage: 5,
-  employeeLeave: [],
-  employeeObj: {},
+  employeeLeave:[]
 };
 
 export enum REDUCER_ACTION_TYPE {
   GET_SUBORDINATES,
   HANDLE_CHANGE_PAGE,
   HANDLE_CHANGE_ROWS_PER_PAGE,
-  GET_EMPLOYEE_LEAVE,
-  GET_EMPLOYEE_OBJ,
+  GET_EMPLOYEE_LEAVE
 }
 
 type ReducerAction = {
@@ -28,8 +26,6 @@ export const reducer = (state: typeof initState, action: ReducerAction) => {
     case REDUCER_ACTION_TYPE.HANDLE_CHANGE_ROWS_PER_PAGE:
       return { ...state, rowsPerPage: action.payload ?? 5 };
     case REDUCER_ACTION_TYPE.GET_EMPLOYEE_LEAVE:
-      return { ...state, employeeLeave: action.payload ?? [] };
-    case REDUCER_ACTION_TYPE.GET_EMPLOYEE_OBJ:
-      return { ...state, employeeObj: action.payload ?? {} };
+      return {...state, employeeLeave: action.payload ?? []}
   }
 };

@@ -74,7 +74,7 @@ const UrlopApp: FC = () => {
                   />
                 }
               >
-                <Route path="workersList/employeeLeave" element={<EmployeeLeave />} />
+                <Route path="employeeLeave" element={<EmployeeLeave />} />
               </Route>
             </Route>
           </Route>

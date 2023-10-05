@@ -30,7 +30,6 @@ export interface SupervisorModel {
   getEmployeeLeave: (obj: UserModel) => void;
   employeeLeaveTableHeaders: string[];
   filterLeaveEmployee: (subordinatesObj: UserModel) => void;
-  handlePreviousPage: (previousPage: string) => void;
 }
 const userToken: string | any = localStorage.getItem("userToken");
 
@@ -73,7 +72,7 @@ export function SupervisorProvider({ children }: propsModel) {
   const nav = useNavigate();
   const leaveData = new Data("leaveConfirm");
   const getEmployeeLeaveObj = new Data("getEmployeeLeaveObj");
-  const navigate = useNavigate();
+const navigate = useNavigate();
 
   useEffect(() => {
     dispatch({
@@ -147,8 +146,6 @@ export function SupervisorProvider({ children }: propsModel) {
     "Supervisor approval request status.",
     "Supervisor comment.",
   ];
-  const handlePreviousPage = (previousPage: string): void =>
-    navigate(previousPage);
 
   return (
     <SupervisorContext.Provider
@@ -160,7 +157,6 @@ export function SupervisorProvider({ children }: propsModel) {
         getEmployeeLeave,
         employeeLeaveTableHeaders,
         filterLeaveEmployee,
-        handlePreviousPage,
       }}
     >
       {children}

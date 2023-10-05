@@ -21,7 +21,6 @@ const EmployeeTable: FC<TableProps> = () => {
     handleChangeRowsPerPage,
     getEmployeeLeave,
     filterLeaveEmployee,
-    employeeLeaveTableHeaders
   } = useContext(SupervisorContext);
   return (
     <ThemeProvider theme={theme}>
@@ -45,7 +44,6 @@ const EmployeeTable: FC<TableProps> = () => {
               StyledTableCell={StyledTableCell}
               getEmployeeLeave={getEmployeeLeave}
               filterLeaveEmployee={filterLeaveEmployee}
-              
             />
           ))}
         </TableBody>

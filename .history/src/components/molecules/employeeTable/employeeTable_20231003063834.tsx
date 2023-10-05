@@ -45,7 +45,9 @@ const EmployeeTable: FC<TableProps> = () => {
               StyledTableCell={StyledTableCell}
               getEmployeeLeave={getEmployeeLeave}
               filterLeaveEmployee={filterLeaveEmployee}
-              
+              employeeLeaveTableHeaders={employeeLeaveTableHeaders}
+              state={state}
+              handleChangePage={handleChangePage}
             />
           ))}
         </TableBody>

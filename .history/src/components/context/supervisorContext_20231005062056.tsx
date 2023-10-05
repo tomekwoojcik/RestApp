@@ -147,8 +147,7 @@ export function SupervisorProvider({ children }: propsModel) {
     "Supervisor approval request status.",
     "Supervisor comment.",
   ];
-  const handlePreviousPage = (previousPage: string): void =>
-    navigate(previousPage);
+  const handlePreviousPage = (previousPage:string):void =>navigate(previousPage)
 
   return (
     <SupervisorContext.Provider
@@ -160,7 +159,7 @@ export function SupervisorProvider({ children }: propsModel) {
         getEmployeeLeave,
         employeeLeaveTableHeaders,
         filterLeaveEmployee,
-        handlePreviousPage,
+        handlePreviousPage
       }}
     >
       {children}
