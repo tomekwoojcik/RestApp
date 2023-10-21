@@ -39,8 +39,6 @@ export interface LeavePlanContextModel {
     page: number;
     rowsPerPage: number;
     leaveRequestsAwaitingResponseArr: leaveObjModel[];
-    leaveRequestsCancelArr: leaveObjModel[];
-
   };
   leaveArr: string[];
   personReplaceArr: string[];

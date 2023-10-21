@@ -83,16 +83,6 @@ export const supervisorButtons: MenuButtonModel[] = [
   },
 ];
 
-export const employeeLeaveTableHeaders: string[] = [
-    "Start date leave.",
-    "End date leave.",
-    "Kind of leave.",
-    "Employee's leave request status.",
-    "Replacement person.",
-    "Supervisor approval request status.",
-    "Supervisor comment.",
-  ];
-
 export const SupervisorContext = createContext({} as SupervisorModel);
 
 export function SupervisorProvider({ children }: propsModel) {
@@ -103,9 +93,8 @@ export function SupervisorProvider({ children }: propsModel) {
     "supervisorEmployeeLeaveObjConfirm",
   );
   const rejectRestArr = new Data("rejectRestArr");
+  const rejectArrData = new Data("rejectArr");
   const rejectArrDataCancel = new Data("rejectArrDataCancel");
-    const awaitingResponseLeaveData = new Data("awaitingAResponseLeaveData");
-
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -252,25 +241,11 @@ export function SupervisorProvider({ children }: propsModel) {
       payload: text,
     })
   };
-  const handleOptionStatus = (option: string) : void => {
+  const handleOptionStatus = (option: string) => {
     dispatch({
       type: REDUCER_ACTION_TYPE.HANDLE_OPTION_STATUS,
       payload: option,
     })
-  };
-
-  const filterLeaveData = (obj:leaveObjModel):void => {
-    const arr = leaveData.getData().filter((el: leaveObjModel) => el.leaveId != obj.leaveId);
-            leaveData.setData(arr)
-  }
-
-  const setFilterObjInData = (obj: leaveObjModel, data:any): void => {
-    if (data.getData() == null) {
-           data.setData([]);
-          }
-        const getData = data.getData();
-        const restArr: leaveObjModel[] = [...getData, obj];
-    data.setData(restArr);
   };
 
   const handleRejectRestForm = () => {
@@ -279,23 +254,25 @@ export function SupervisorProvider({ children }: propsModel) {
     getRejectRestArr.supervisorComment = state.supervisorComment;
     switch (getRejectRestArr.supervisorApprovalStatus) {
       case arrFormOptionStatus[0].value: {
-        setFilterObjInData(getRejectRestArr, rejectArrDataCancel);
-        rejectRestArr.setData([]);
-        filterLeaveData(getRejectRestArr);
+        
         break;
       }
         
-      case arrFormOptionStatus[1].value: {
-        setFilterObjInData(getRejectRestArr, awaitingResponseLeaveData);
-        rejectRestArr.setData([]);
-        filterLeaveData(getRejectRestArr);
-
-        break;
-      }
       
     }
-    
+    const newArr: any = rejectArrData.getData()
+    const newRejectArrData: leaveObjModel[] = [...newArr, getRejectRestArr]
+    rejectArrData.setData(newRejectArrData);
+    rejectRestArr.setData([]);
+    const getOtherLeave = leaveData.getData().filter((el: leaveObjModel) => el.leaveId != getRejectRestArr.leaveId);
+    leaveData.setData(getOtherLeave);
     navigate("/user/workersList");
+    if (rejectArrDataCancel.getData() == null) {
+      rejectArrDataCancel.setData([]);
+    }
+    const getRejectArrDataCancel = rejectArrDataCancel.getData();
+    const restArr: leaveObjModel[] = [...getRejectArrDataCancel, getRejectRestArr];
+    rejectArrDataCancel.setData(restArr);
   };
   
   return (

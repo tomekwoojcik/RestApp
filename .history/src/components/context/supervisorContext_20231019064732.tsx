@@ -15,9 +15,9 @@ import { leaveObjModel } from "./userLeaveRequestContext";
 interface supervisorMenuObj {
   text: string;
 }
-export interface ArrFormOptionStatusModel{ 
-  frontText: string,
-  value:string
+export interface ArrFormOptionStatusModel {
+  frontText: string;
+  value: string;
 }
 export interface SupervisorModel {
   state: {
@@ -83,16 +83,6 @@ export const supervisorButtons: MenuButtonModel[] = [
   },
 ];
 
-export const employeeLeaveTableHeaders: string[] = [
-    "Start date leave.",
-    "End date leave.",
-    "Kind of leave.",
-    "Employee's leave request status.",
-    "Replacement person.",
-    "Supervisor approval request status.",
-    "Supervisor comment.",
-  ];
-
 export const SupervisorContext = createContext({} as SupervisorModel);
 
 export function SupervisorProvider({ children }: propsModel) {
@@ -103,16 +93,14 @@ export function SupervisorProvider({ children }: propsModel) {
     "supervisorEmployeeLeaveObjConfirm",
   );
   const rejectRestArr = new Data("rejectRestArr");
+  const rejectArrData = new Data("rejectArr");
   const rejectArrDataCancel = new Data("rejectArrDataCancel");
-    const awaitingResponseLeaveData = new Data("awaitingAResponseLeaveData");
-
   const navigate = useNavigate();
 
   useEffect(() => {
     dispatch({
       type: REDUCER_ACTION_TYPE.GET_SUBORDINATES,
       payload: subordinatesArr,
-
     });
   }, []);
 
@@ -195,29 +183,33 @@ export function SupervisorProvider({ children }: propsModel) {
           .filter((leaveObj: leaveObjModel) => {
             return leaveObj.leaveId == leaveId;
           });
-        
-        const arr = leaveData
-          .getData()
-          .filter((leaveObj: leaveObjModel) => {
-            return leaveObj.leaveId != leaveId;
-          });
-        
-        
+
+        const arr = leaveData.getData().filter((leaveObj: leaveObjModel) => {
+          return leaveObj.leaveId != leaveId;
+        });
+
         leaveObj.supervisorApprovalStatus = "leave confirm";
         leaveObj.supervisorComment = "have a good rest";
-        const getArrSupervisorEmployeeLeaveObjConfirm: [] = supervisorEmployeeLeaveObjConfirm.getData();
-        const setArrSupervisorEmployeeLeaveObjConfirm: leaveObjModel[] = [...getArrSupervisorEmployeeLeaveObjConfirm, leaveObj];
-        supervisorEmployeeLeaveObjConfirm.setData(setArrSupervisorEmployeeLeaveObjConfirm);
+        const getArrSupervisorEmployeeLeaveObjConfirm: [
+          ,
+        ] = supervisorEmployeeLeaveObjConfirm.getData();
+        const setArrSupervisorEmployeeLeaveObjConfirm: leaveObjModel[] = [
+          ...getArrSupervisorEmployeeLeaveObjConfirm,
+          leaveObj,
+        ];
+        supervisorEmployeeLeaveObjConfirm.setData(
+          setArrSupervisorEmployeeLeaveObjConfirm,
+        );
         leaveData.setData(arr);
         dispatch({
           type: REDUCER_ACTION_TYPE.TOGGLE_RENDER,
           payload: true,
-        })
+        });
         break;
       }
       case "reject": {
         navigate("rejectRest");
-         const arrLeaveObj :leaveObjModel[] = leaveData
+        const arrLeaveObj: leaveObjModel[] = leaveData
           .getData()
           .filter((leaveObj: leaveObjModel) => {
             return leaveObj.leaveId == leaveId;
@@ -227,50 +219,38 @@ export function SupervisorProvider({ children }: propsModel) {
           type: REDUCER_ACTION_TYPE.TOGGLE_RENDER,
           payload: true,
         });
-          dispatch({
-            type: REDUCER_ACTION_TYPE.REJECT_REST_ARR,
-            payload: arrLeaveObj,
-          });
-          
+        dispatch({
+          type: REDUCER_ACTION_TYPE.REJECT_REST_ARR,
+          payload: arrLeaveObj,
+        });
+
         break;
       }
     }
   };
 
-  const arrFormOptionStatus: ArrFormOptionStatusModel[] = [ {
+  const arrFormOptionStatus: ArrFormOptionStatusModel[] = [
+    {
       frontText: "Reject the application",
-      value:"reject"
+      value: "reject",
     },
     {
       frontText: "The request for leave is awaiting a response",
-      value:"waiting for an answer"
-    }];
-  
+      value: "waiting for an answer",
+    },
+  ];
+
   const handleSupervisorComment = (text: string) => {
     dispatch({
       type: REDUCER_ACTION_TYPE.HANDLE_SUPERVISOR_COMMENT,
       payload: text,
-    })
+    });
   };
-  const handleOptionStatus = (option: string) : void => {
+  const handleOptionStatus = (option: string) => {
     dispatch({
       type: REDUCER_ACTION_TYPE.HANDLE_OPTION_STATUS,
       payload: option,
-    })
-  };
-
-  const filterLeaveData = (obj:leaveObjModel):void => {
-    const arr = leaveData.getData().filter((el: leaveObjModel) => el.leaveId != obj.leaveId);
-            leaveData.setData(arr)
-  }
-
-  const setFilterObjInData = (obj: leaveObjModel, data:any): void => {
-    if (data.getData() == null) {
-           data.setData([]);
-          }
-        const getData = data.getData();
-        const restArr: leaveObjModel[] = [...getData, obj];
-    data.setData(restArr);
+    });
   };
 
   const handleRejectRestForm = () => {
@@ -279,25 +259,32 @@ export function SupervisorProvider({ children }: propsModel) {
     getRejectRestArr.supervisorComment = state.supervisorComment;
     switch (getRejectRestArr.supervisorApprovalStatus) {
       case arrFormOptionStatus[0].value: {
-        setFilterObjInData(getRejectRestArr, rejectArrDataCancel);
+        const newArr: any = rejectArrData.getData();
+        const newRejectArrData: leaveObjModel[] = [...newArr, getRejectRestArr];
+        rejectArrData.setData(newRejectArrData);
         rejectRestArr.setData([]);
-        filterLeaveData(getRejectRestArr);
+        const getOtherLeave = leaveData
+          .getData()
+          .filter(
+            (el: leaveObjModel) => el.leaveId != getRejectRestArr.leaveId,
+          );
+        leaveData.setData(getOtherLeave);
+        if (rejectArrDataCancel.getData() == null) {
+          rejectArrDataCancel.setData([]);
+        }
+        const getRejectArrDataCancel = rejectArrDataCancel.getData();
+        const restArr: leaveObjModel[] = [
+          ...getRejectArrDataCancel,
+          getRejectRestArr,
+        ];
+        rejectArrDataCancel.setData(restArr);
         break;
       }
-        
-      case arrFormOptionStatus[1].value: {
-        setFilterObjInData(getRejectRestArr, awaitingResponseLeaveData);
-        rejectRestArr.setData([]);
-        filterLeaveData(getRejectRestArr);
-
-        break;
-      }
-      
     }
-    
+
     navigate("/user/workersList");
   };
-  
+
   return (
     <SupervisorContext.Provider
       value={{

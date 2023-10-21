@@ -21,7 +21,6 @@ export function LeavePlanProvider({ children }: propsModel) {
   const leaveConfirmData = new Data("leaveConfirm");
   const leaveCancelData = new Data("leaveCancel");
   const awaitingAResponseLeaveData = new Data("awaitingAResponseLeaveData");
-  const rejectArrDataCancel = new Data("rejectArrDataCancel");
   const user = new Data("user");
   const userData = user.getData();
   const leaveArr = [
@@ -122,7 +121,7 @@ export function LeavePlanProvider({ children }: propsModel) {
       );
       return;
     }
-
+    
     if (
       firstDayLeave?.slice(0, 3) == "Sun" ||
       firstDayLeave?.slice(0, 3) == "Sat" ||
@@ -267,7 +266,8 @@ export function LeavePlanProvider({ children }: propsModel) {
     }
   };
 
-  const handleChangePage = (
+
+   const handleChangePage = (
     event: React.MouseEvent<HTMLButtonElement> | null,
     newPage: number,
   ) => {
@@ -293,16 +293,11 @@ export function LeavePlanProvider({ children }: propsModel) {
   useEffect(() => {
     dispatch({
       type: REDUCER_ACTION_TYPE.HANDLE_LEAVE_REQUESTS_AWAITING_RESPONSE_ARR,
-      payload: awaitingAResponseLeaveData.getData(),
-    });
-    const dataFilter: leaveObjModel[] = rejectArrDataCancel
-      .getData()
-      .filter((obj: leaveObjModel) => userData.id == obj.personId);
-    dispatch({
-      type: REDUCER_ACTION_TYPE.HANDlE_LEAVE_REQUESTS_CANCEL_ARR,
-      payload: dataFilter,
-    });
-  }, []);
+      payload: awaitingAResponseLeaveData.getData()
+    })
+    const dataFilter: leaveObjModel[] =  userData.id
+    
+  },[])
 
   return (
     <LeavePlanContext.Provider
@@ -319,6 +314,7 @@ export function LeavePlanProvider({ children }: propsModel) {
         tableHeaders,
         handleChangePage,
         handleChangeRowsPerPage,
+
       }}
     >
       {children}

@@ -83,16 +83,6 @@ export const supervisorButtons: MenuButtonModel[] = [
   },
 ];
 
-export const employeeLeaveTableHeaders: string[] = [
-    "Start date leave.",
-    "End date leave.",
-    "Kind of leave.",
-    "Employee's leave request status.",
-    "Replacement person.",
-    "Supervisor approval request status.",
-    "Supervisor comment.",
-  ];
-
 export const SupervisorContext = createContext({} as SupervisorModel);
 
 export function SupervisorProvider({ children }: propsModel) {

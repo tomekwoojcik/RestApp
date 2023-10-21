@@ -83,16 +83,6 @@ export const supervisorButtons: MenuButtonModel[] = [
   },
 ];
 
-export const employeeLeaveTableHeaders: string[] = [
-    "Start date leave.",
-    "End date leave.",
-    "Kind of leave.",
-    "Employee's leave request status.",
-    "Replacement person.",
-    "Supervisor approval request status.",
-    "Supervisor comment.",
-  ];
-
 export const SupervisorContext = createContext({} as SupervisorModel);
 
 export function SupervisorProvider({ children }: propsModel) {
@@ -103,8 +93,9 @@ export function SupervisorProvider({ children }: propsModel) {
     "supervisorEmployeeLeaveObjConfirm",
   );
   const rejectRestArr = new Data("rejectRestArr");
+  const rejectArrData = new Data("rejectArr");
   const rejectArrDataCancel = new Data("rejectArrDataCancel");
-    const awaitingResponseLeaveData = new Data("awaitingAResponseLeaveData");
+    const awaitingAResponseLeaveData = new Data("awaitingAResponseLeaveData");
 
   const navigate = useNavigate();
 
@@ -264,32 +255,28 @@ export function SupervisorProvider({ children }: propsModel) {
             leaveData.setData(arr)
   }
 
-  const setFilterObjInData = (obj: leaveObjModel, data:any): void => {
-    if (data.getData() == null) {
-           data.setData([]);
-          }
-        const getData = data.getData();
-        const restArr: leaveObjModel[] = [...getData, obj];
-    data.setData(restArr);
-  };
-
   const handleRejectRestForm = () => {
     const [getRejectRestArr] = rejectRestArr.getData();
     getRejectRestArr.supervisorApprovalStatus = state.handleOptionStatus;
     getRejectRestArr.supervisorComment = state.supervisorComment;
     switch (getRejectRestArr.supervisorApprovalStatus) {
       case arrFormOptionStatus[0].value: {
-        setFilterObjInData(getRejectRestArr, rejectArrDataCancel);
+        const newArr = rejectArrData.getData()
+        const newRejectArrData: leaveObjModel[] = [...newArr, getRejectRestArr]
+        rejectArrData.setData(newRejectArrData);
         rejectRestArr.setData([]);
-        filterLeaveData(getRejectRestArr);
+         filterLeaveData(getRejectRestArr);
+        if (rejectArrDataCancel.getData() == null) {
+           rejectArrDataCancel.setData([]);
+          }
+        const getRejectArrDataCancel = rejectArrDataCancel.getData();
+        const restArr: leaveObjModel[] = [...getRejectArrDataCancel, getRejectRestArr];
+        rejectArrDataCancel.setData(restArr);
         break;
       }
         
       case arrFormOptionStatus[1].value: {
-        setFilterObjInData(getRejectRestArr, awaitingResponseLeaveData);
-        rejectRestArr.setData([]);
-        filterLeaveData(getRejectRestArr);
-
+         filterLeaveData(getRejectRestArr);
         break;
       }
       

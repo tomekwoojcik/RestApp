@@ -16,8 +16,7 @@ export const initState = {
   counter: 1,
   page: 0,
   rowsPerPage: 5,
-  leaveRequestsAwaitingResponseArr: [],
-  leaveRequestsCancelArr:[],
+  leaveRequestsAwaitingResponseArr:[],
 };
 
 export enum REDUCER_ACTION_TYPE {
@@ -33,7 +32,6 @@ export enum REDUCER_ACTION_TYPE {
   HANDLE_CHANGE_PAGE,
   HANDLE_CHANGE_ROWS_PER_PAGE,
   HANDLE_LEAVE_REQUESTS_AWAITING_RESPONSE_ARR,
-  HANDlE_LEAVE_REQUESTS_CANCEL_ARR,
 }
 
 type ReducerAction = {
@@ -61,14 +59,12 @@ export const reducer = (state: typeof initState, action: ReducerAction) => {
       return { ...state, counter: action.payload ?? 1 };
     case REDUCER_ACTION_TYPE.DATA_CONFIRMED_RENDER:
       return { ...state, dataConfirmedRender: action.payload ?? [] };
-    case REDUCER_ACTION_TYPE.HANDLE_CHANGE_PAGE:
+     case REDUCER_ACTION_TYPE.HANDLE_CHANGE_PAGE:
       return { ...state, page: action.payload ?? 0 };
     case REDUCER_ACTION_TYPE.HANDLE_CHANGE_ROWS_PER_PAGE:
       return { ...state, rowsPerPage: action.payload ?? 5 };
     case REDUCER_ACTION_TYPE.HANDLE_LEAVE_REQUESTS_AWAITING_RESPONSE_ARR:
       return { ...state, leaveRequestsAwaitingResponseArr: action.payload ?? [] };
-    case REDUCER_ACTION_TYPE.HANDlE_LEAVE_REQUESTS_CANCEL_ARR:
-      return { ...state, leaveRequestsCancelArr: action.payload ?? [] };
     default:
       throw new Error();
   }

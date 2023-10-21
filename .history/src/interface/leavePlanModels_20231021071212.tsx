@@ -1,7 +1,6 @@
 import { DateObjType, REDUCER_ACTION_TYPE } from "../hooks/leavePlanHooks";
 import { Dayjs } from "dayjs";
 import { ChangeEvent } from "react";
-import { leaveObjModel } from "../components/context/userLeaveRequestContext";
 export interface LeavePlanItemModel {
   subtractDay: number;
   howMuchTimeToStart: number;
@@ -38,9 +37,7 @@ export interface LeavePlanContextModel {
     dataConfirmedRender: DetailsModel[];
     page: number;
     rowsPerPage: number;
-    leaveRequestsAwaitingResponseArr: leaveObjModel[];
-    leaveRequestsCancelArr: leaveObjModel[];
-
+    
   };
   leaveArr: string[];
   personReplaceArr: string[];
