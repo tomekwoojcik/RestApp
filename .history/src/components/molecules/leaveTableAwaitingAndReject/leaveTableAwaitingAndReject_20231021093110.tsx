@@ -26,7 +26,6 @@ interface propsModel {
   ) => void;
   paginationComponent: any;
   request: boolean;
-  handleRequest : (obj:leaveObjModel) => void
 }
 
 const LeaveTableAwaitingAndReject: FC<propsModel> = ({
@@ -39,8 +38,7 @@ const LeaveTableAwaitingAndReject: FC<propsModel> = ({
   onPageChange,
   onRowsPerPageChange,
   paginationComponent,
-  request,
-  handleRequest
+  request
 }) => {
   return (
     <ThemeProvider theme={theme}>
@@ -52,7 +50,7 @@ const LeaveTableAwaitingAndReject: FC<propsModel> = ({
               ? arr.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               : arr
             ).map((obj: leaveObjModel) => (
-              <LeaveTableAwaitingAndRejectRow key={obj.leaveId} obj={obj} request={ request} handleRequest={handleRequest} />
+              <LeaveTableAwaitingAndRejectRow obj={obj} request={ request} />
             ))}
           </TableBody>
           {footerToggle == true ? (

@@ -59,6 +59,4 @@ export interface LeavePlanContextModel {
   ) => void;
   handleRequestPending: (obj: leaveObjModel) => void;
   handleActionForm: (obj: leaveObjModel) => void;
-  handleFormTextRequestEmployee: (e: ChangeEvent<HTMLInputElement>) => void;
-
 }

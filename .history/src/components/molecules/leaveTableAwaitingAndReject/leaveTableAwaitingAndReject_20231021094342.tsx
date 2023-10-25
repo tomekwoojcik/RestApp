@@ -52,7 +52,7 @@ const LeaveTableAwaitingAndReject: FC<propsModel> = ({
               ? arr.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               : arr
             ).map((obj: leaveObjModel) => (
-              <LeaveTableAwaitingAndRejectRow key={obj.leaveId} obj={obj} request={ request} handleRequest={handleRequest} />
+              <LeaveTableAwaitingAndRejectRow obj={obj} request={ request} handleRequest={handleRequest} />
             ))}
           </TableBody>
           {footerToggle == true ? (

@@ -25,7 +25,6 @@ export function LeavePlanProvider({ children }: propsModel) {
   const rejectArrDataCancel = new Data("rejectArrDataCancel");
   const user = new Data("user");
   const userData = user.getData();
-  const messageData = new Data("messageData");
   const leaveArr = [
     "none",
     "Paid Leave",
@@ -312,27 +311,14 @@ export function LeavePlanProvider({ children }: propsModel) {
   }, []);
 
   const nav = useNavigate();
-
-  const handleMessage = (messageId: string, employeeId: string, supervisorId: string, objId: string) => {
-    
-  }
-
-  const handleFormTextRequestEmployee = (e: ChangeEvent<HTMLInputElement>) => {
-    dispatch({
-      type: REDUCER_ACTION_TYPE.HANDLE_EMPLOYEE_REQUEST_TEXT,
-      payload: e.target.value,
-    });
-  };
   const handleRequestPending = (obj: leaveObjModel): void => {
     nav("request");
   };
 
   const handleActionForm = (obj: leaveObjModel): void => {
-    const getData: leaveObjModel[] = leaveConfirmData.getData();
-    leaveConfirmData.setData([...getData, obj]);
     
-
   };
+
   return (
     <LeavePlanContext.Provider
       value={{
@@ -350,7 +336,6 @@ export function LeavePlanProvider({ children }: propsModel) {
         handleChangeRowsPerPage,
         handleRequestPending,
         handleActionForm,
-        handleFormTextRequestEmployee
       }}
     >
       {children}

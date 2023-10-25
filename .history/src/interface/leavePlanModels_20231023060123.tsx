@@ -41,7 +41,7 @@ export interface LeavePlanContextModel {
     leaveRequestsAwaitingResponseArr: leaveObjModel[];
     leaveRequestsCancelArr: leaveObjModel[];
     leaveRequestsCancelObj: leaveObjModel;
-    employeeRequestText: string;
+
   };
   leaveArr: string[];
   personReplaceArr: string[];
@@ -58,7 +58,5 @@ export interface LeavePlanContextModel {
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => void;
   handleRequestPending: (obj: leaveObjModel) => void;
-  handleActionForm: (obj: leaveObjModel) => void;
-  handleFormTextRequestEmployee: (e: ChangeEvent<HTMLInputElement>) => void;
-
+  handleActionForm: () => void;
 }

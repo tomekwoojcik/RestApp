@@ -6,12 +6,9 @@ import { StyledTableCell } from "../../context/tableContext";
 import TablePaginationLeaveRequestsAwaitingResponse from "../../atoms/tablePaginationLeaveRequestsAwaitingResponse/tablePaginationLeaveRequestsAwaitingResponse";
 
 const LeaveRequestsAwaitingResponse: FC = () => {
-  const {
-    state,
-    handleChangePage,
-    handleChangeRowsPerPage,
-    handleRequestPending,
-  } = useContext(LeavePlanContext);
+  const { state, handleChangePage, handleChangeRowsPerPage, handleRequestPending } = useContext(
+    LeavePlanContext,
+  );
   return (
     <div>
       <p>Leave requests awaiting response.</p>
@@ -23,13 +20,13 @@ const LeaveRequestsAwaitingResponse: FC = () => {
           styled={StyledTableCell}
           tableHeaders={employeeLeaveTableHeaders}
           page={state.page}
-          rowsPerPage={state.rowsPerPage}
-          footerToggle={false}
-          onPageChange={handleChangePage}
-          onRowsPerPageChange={handleChangeRowsPerPage}
-          paginationComponent={TablePaginationLeaveRequestsAwaitingResponse}
-          request={true}
-          handleRequest={handleRequestPending}
+            rowsPerPage={state.rowsPerPage}
+            footerToggle={false}
+            onPageChange={handleChangePage}
+            onRowsPerPageChange={handleChangeRowsPerPage}
+            paginationComponent={TablePaginationLeaveRequestsAwaitingResponse}
+            request={true}
+            handleRequest = {handleRequestPending}
         />
       )}
 
@@ -42,13 +39,12 @@ const LeaveRequestsAwaitingResponse: FC = () => {
           styled={StyledTableCell}
           tableHeaders={employeeLeaveTableHeaders}
           page={state.page}
-          rowsPerPage={state.rowsPerPage}
-          footerToggle={true}
-          onPageChange={handleChangePage}
-          onRowsPerPageChange={handleChangeRowsPerPage}
-          paginationComponent={TablePaginationLeaveRequestsAwaitingResponse}
-          request={false}
-          handleRequest={handleRequestPending}
+            rowsPerPage={state.rowsPerPage}
+            footerToggle={true}
+            onPageChange={handleChangePage}
+            onRowsPerPageChange={handleChangeRowsPerPage}
+            paginationComponent={TablePaginationLeaveRequestsAwaitingResponse}
+            request={false}
         />
       )}
     </div>

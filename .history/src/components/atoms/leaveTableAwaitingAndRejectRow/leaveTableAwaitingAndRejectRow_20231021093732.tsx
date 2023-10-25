@@ -4,11 +4,10 @@ import { Button, TableCell, TableRow } from "@mui/material";
 
 interface propsModel {
   obj: leaveObjModel;
-    request: boolean;
-    handleRequest:(obj:leaveObjModel)=>void
+  request: boolean;
 }
 
-const LeaveTableAwaitingAndRejectRow: FC<propsModel> = ({ obj, request, handleRequest }) => {
+const LeaveTableAwaitingAndRejectRow: FC<propsModel> = ({ obj, request }) => {
   return (
     <TableRow key={obj.leaveId}>
       <TableCell>{obj.startDateOfLeave}</TableCell>
@@ -20,7 +19,7 @@ const LeaveTableAwaitingAndRejectRow: FC<propsModel> = ({ obj, request, handleRe
       <TableCell>{obj.supervisorComment}</TableCell>
       {request == true ? (
         <TableCell>
-          <Button onClick={()=>{handleRequest(obj)}}>Request</Button>
+          <Button onClick={()=>{}}>Request</Button>
         </TableCell>
       ) : null}
     </TableRow>

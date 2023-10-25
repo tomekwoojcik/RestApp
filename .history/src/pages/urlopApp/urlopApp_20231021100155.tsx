@@ -18,7 +18,6 @@ import RequireAuth, {
 import UnauthorizedPage from "../../components/organisms/unauthorizedPage/unauthorizedPage";
 import EmployeeLeave from "../../components/organisms/employeeLeave/employeeLeave";
 import RejectRest from "../../components/molecules/rejectRest/rejectRest";
-import EmployeePendingRequestRest from "../../components/molecules/employeePendingRequestRest/employeePendingRequestRest";
 
 const UrlopApp: FC = () => {
   const data = new Data("user");
@@ -54,22 +53,6 @@ const UrlopApp: FC = () => {
               >
                 <Route path="plan" element={<UserPlan />} />
               </Route>
-               <Route
-                element={
-                  <RequireAuth
-                    allowedRole={[
-                      EmployeeRole.Employee,
-                      EmployeeRole.Director,
-                      EmployeeRole.Supervisor,
-                    ]}
-                  />
-                }
-              >
-                <Route
-                  path="plan/request"
-                  element={<EmployeePendingRequestRest />}
-                />
-              </Route>
               <Route
                 element={
                   <RequireAuth
@@ -95,6 +78,21 @@ const UrlopApp: FC = () => {
                 <Route
                   path="workersList/employeeLeave"
                   element={<EmployeeLeave />}
+                />
+              </Route>
+              <Route
+                element={
+                  <RequireAuth
+                    allowedRole={[
+                      EmployeeRole.Director,
+                      EmployeeRole.Supervisor,
+                    ]}
+                  />
+                }
+              >
+                <Route
+                  path="workersList/employeeLeave/rejectRest"
+                  element={<RejectRest />}
                 />
               </Route>
               <Route

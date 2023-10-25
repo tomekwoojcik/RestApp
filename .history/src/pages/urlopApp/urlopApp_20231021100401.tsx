@@ -54,22 +54,6 @@ const UrlopApp: FC = () => {
               >
                 <Route path="plan" element={<UserPlan />} />
               </Route>
-               <Route
-                element={
-                  <RequireAuth
-                    allowedRole={[
-                      EmployeeRole.Employee,
-                      EmployeeRole.Director,
-                      EmployeeRole.Supervisor,
-                    ]}
-                  />
-                }
-              >
-                <Route
-                  path="plan/request"
-                  element={<EmployeePendingRequestRest />}
-                />
-              </Route>
               <Route
                 element={
                   <RequireAuth
@@ -110,6 +94,21 @@ const UrlopApp: FC = () => {
                 <Route
                   path="workersList/employeeLeave/rejectRest"
                   element={<RejectRest />}
+                />
+              </Route>
+              <Route
+                element={
+                  <RequireAuth
+                    allowedRole={[
+                      EmployeeRole.Director,
+                      EmployeeRole.Supervisor,
+                    ]}
+                  />
+                }
+              >
+                <Route
+                  path="workersList/employeeLeave/rejectRest"
+                  element={<EmployeePendingRequestRest />}
                 />
               </Route>
             </Route>

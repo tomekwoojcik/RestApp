@@ -66,7 +66,7 @@ const UrlopApp: FC = () => {
                 }
               >
                 <Route
-                  path="plan/request"
+                  path="employeeRequest"
                   element={<EmployeePendingRequestRest />}
                 />
               </Route>

@@ -1,5 +1,3 @@
-import { leaveObjModel } from "../components/context/userLeaveRequestContext";
-
 export type DateObjType = {
   $d?: string;
 };
@@ -20,8 +18,7 @@ export const initState = {
   rowsPerPage: 5,
   leaveRequestsAwaitingResponseArr: [],
   leaveRequestsCancelArr: [],
-  leaveRequestsCancelObj: {} as leaveObjModel,
-  employeeRequestText : "",
+  leaveRequestsCancelObj:{}
 };
 
 export enum REDUCER_ACTION_TYPE {
@@ -39,7 +36,6 @@ export enum REDUCER_ACTION_TYPE {
   HANDLE_LEAVE_REQUESTS_AWAITING_RESPONSE_ARR,
   HANDlE_LEAVE_REQUESTS_CANCEL_ARR,
   HANDlE_LEAVE_REQUESTS_CANCEL_OBJ,
-  HANDLE_EMPLOYEE_REQUEST_TEXT,
 
 }
 
@@ -78,8 +74,6 @@ export const reducer = (state: typeof initState, action: ReducerAction) => {
       return { ...state, leaveRequestsCancelArr: action.payload ?? [] };
     case REDUCER_ACTION_TYPE.HANDlE_LEAVE_REQUESTS_CANCEL_OBJ:
       return { ...state, leaveRequestsCancelObj: action.payload ?? {} };
-    case REDUCER_ACTION_TYPE.HANDLE_EMPLOYEE_REQUEST_TEXT:
-      return { ...state, employeeRequestText: action.payload ?? "" };
     default:
       throw new Error();
   }
