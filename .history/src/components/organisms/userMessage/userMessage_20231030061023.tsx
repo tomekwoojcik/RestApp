@@ -1,16 +1,12 @@
 import { MessageProvider } from "../../context/messageContext";
 import MessageForm from "../../molecules/messageForm/messageForm";
-import MessageList from "../messageList/messageList";
 
-const UserMessage = () => {
+const UserMessage = ()=> {
   return (
     <MessageProvider>
-      <div>
-        <MessageForm />
-        <MessageList />
-      </div>
+      <MessageForm/>
     </MessageProvider>
   );
-};
+}
 
 export default UserMessage;

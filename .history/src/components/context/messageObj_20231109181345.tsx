@@ -1,25 +1,28 @@
 import { nanoid } from "nanoid";
-import { MessageObject } from "./messageObject";
+interface messageObj {
+  date: Date;
+  message: string;
+}
 export class Messages {
   conversationStarter: Date;
   messageId: string;
   messageReason: string;
   employeeId: number;
-  messageRecipient: number;
-  messagesArr: MessageObject[];
+  supervisorId: number;
+  messagesArr: messageObj[];
   endOfConversation: null | Date;
 
-  constructor(messageReason: string, employeeId: number, messageRecipient: number) {
+  constructor(messageReason: string, employeeId: number, supervisorId: number) {
     this.conversationStarter = new Date();
     this.messageId = nanoid();
     this.messageReason = messageReason;
     this.employeeId = employeeId;
-    this.messageRecipient = messageRecipient;
+    this.supervisorId = supervisorId;
     this.messagesArr = [];
     this.endOfConversation = null;
   }
 
-  sentMessage(messageObj: MessageObject) {
-      this.messagesArr.push(messageObj);
+  sentMessage(messageObj: messageObj) {
+    this.messagesArr.push(messageObj);
   }
 }

@@ -1,12 +1,15 @@
 import { nanoid } from "nanoid";
-import { MessageObject } from "./messageObject";
+interface messageObj {
+  date: Date;
+  message: string;
+}
 export class Messages {
   conversationStarter: Date;
   messageId: string;
   messageReason: string;
   employeeId: number;
   messageRecipient: number;
-  messagesArr: MessageObject[];
+  messagesArr: messageObj[];
   endOfConversation: null | Date;
 
   constructor(messageReason: string, employeeId: number, messageRecipient: number) {
@@ -19,7 +22,7 @@ export class Messages {
     this.endOfConversation = null;
   }
 
-  sentMessage(messageObj: MessageObject) {
+  sentMessage(messageObj: messageObj) {
       this.messagesArr.push(messageObj);
   }
 }

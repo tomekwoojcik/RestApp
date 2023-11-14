@@ -1,5 +1,9 @@
 const UserMessage = ()=> {
-  return <div />;
+  return (
+    <div>
+      
+    </div>
+  );
 }
 
 export default UserMessage;
