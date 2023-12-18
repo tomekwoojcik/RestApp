@@ -1,0 +1,20 @@
+@import '../../../style/variables';
+
+.loginPages {
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    height: 100vh;
+}
+
+@media (max-width: @mobi) {
+    .loginPages {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-items: center;
+        width: 100vw;
+        height: 100vh;
+        background: url(../../assets/backgroundLoginContainer.jpg) no-repeat center;
+    }
+}

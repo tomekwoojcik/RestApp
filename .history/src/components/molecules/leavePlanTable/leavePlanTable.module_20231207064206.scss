@@ -1,0 +1,25 @@
+@import "../../../style/variables";
+
+.table {
+    background-color: aquamarine;
+}
+
+@media (max-width: $mobile-width) {
+    .table {
+        width: 100vw !important;
+        display: block !important;
+        overflow-x: scroll !important;
+    }
+
+    .tableHeaders {
+        width: 100%;
+    }
+}
+
+@media (max-width: $mobile-width) {
+    .MuiTableContainer-root {
+        width: 100vw !important;
+        display: block !important;
+        overflow-x: scroll !important;
+    }
+}

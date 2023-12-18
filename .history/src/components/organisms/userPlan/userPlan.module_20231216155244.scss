@@ -1,0 +1,17 @@
+@import "../../../style/variables";
+
+.userPlanTextField {
+    width: 50%;
+}
+
+.userAppDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: centery;
+}
+
+@media (max-width: $mobile-width) {
+    .userAppDiv {
+        width: 100vw;
+    }
+}

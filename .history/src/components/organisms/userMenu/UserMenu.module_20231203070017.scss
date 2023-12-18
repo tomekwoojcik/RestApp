@@ -1,0 +1,7 @@
+@import "../../../style/variables";
+
+@media (min-width: $mobile-width) {
+    .drawerBox {
+        width: 50vw;
+    }
+}

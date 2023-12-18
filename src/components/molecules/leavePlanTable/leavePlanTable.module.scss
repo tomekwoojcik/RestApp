@@ -1,0 +1,14 @@
+@import "../../../style/variables";
+
+
+@media (max-width: $mobile-width) {
+    .table {
+        width: 90vw !important;
+        display: block !important;
+        overflow-x: scroll !important;
+    }
+
+    .tableHeaders {
+        width: 100%;
+    }
+}

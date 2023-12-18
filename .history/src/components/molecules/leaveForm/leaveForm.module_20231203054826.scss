@@ -1,0 +1,15 @@
+@import "../../../style/variables";
+
+.formDiv {
+    width: 100%;
+    flex-direction: row !important;
+    align-items: center;
+}
+
+.label {
+    font-family: $first-Font;
+}
+
+.listForm {
+    width: 10vw;
+}

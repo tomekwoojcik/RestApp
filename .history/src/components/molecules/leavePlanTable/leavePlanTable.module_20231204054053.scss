@@ -1,0 +1,15 @@
+@import "../../../style/variables";
+
+.MuiTableCell-head {
+    background-color: red;
+}
+
+@media (max-width: $mobile-width) {
+    .table {
+        width: 100%;
+    }
+
+    .tableHeaders {
+        width: 100%;
+    }
+}

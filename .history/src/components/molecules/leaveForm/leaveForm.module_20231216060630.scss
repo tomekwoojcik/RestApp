@@ -1,0 +1,46 @@
+@import "../../../style/variables";
+
+$marginTopForm : 5px;
+
+.formDiv {
+    flex-direction: row !important;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.label {
+
+    font-family: $first-Font;
+}
+
+.listForm {
+    width: 20vw;
+}
+
+.buttonForm {
+    height: 55px;
+    color: white !important;
+}
+
+@media (max-width: $mobile-width) {
+    .formDiv {
+        width: calc(100vw - 80px) !important;
+        flex-direction: column !important;
+        align-self: center;
+        align-items: stretch;
+    }
+
+    .datePicker {
+        margin-top: $marginTopForm !important;
+    }
+
+    .listForm {
+        width: calc(100vw - 80px) !important;
+        margin-top: $marginTopForm !important;
+    }
+
+    .buttonForm {
+        width: calc(100vw - 80px) !important;
+        margin-top: $marginTopForm !important;
+    }
+}

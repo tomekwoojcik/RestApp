@@ -1,0 +1,7 @@
+@import "../../../style/variables";
+
+@media (max-width: $mobile-width) {
+    .main {
+        width: 425px;
+    }
+}

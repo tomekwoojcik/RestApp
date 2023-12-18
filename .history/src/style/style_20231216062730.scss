@@ -1,0 +1,32 @@
+@import "./reset";
+@import "./variables";
+$paddingToolbar: 16px;
+
+.urlopApp {
+    width: 100vw;
+    height: 100vh;
+}
+
+.css-hyum1k-MuiToolbar-root {
+    width: calc(90vw - calc(2*$paddingToolbar));
+}
+
+.css-1f2xuhi-MuiDrawer-docked {
+    width: calc(90vw - calc(2*$paddingToolbar));
+}
+
+.css-13vb0xd-MuiPaper-root-MuiTable-root {
+    align-self: center;
+    width: 85vw !important;
+}
+
+@media (max-width: $mobile-width) {
+    .css-13vb0xd-MuiPaper-root-MuiTable-root {
+        display: block !important;
+        overflow-x: scroll !important;
+    }
+
+    .tableHeaders {
+        width: 100%;
+    }
+}

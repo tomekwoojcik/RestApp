@@ -1,0 +1,13 @@
+@import "../../style/variables";
+
+.userPage {
+    display: flex;
+    flex-direction: row;
+    padding: 30px;
+}
+
+@media (min-width: $mobile-width) {
+    .formDiv {
+        flex-wrap: wrap;
+    }
+}

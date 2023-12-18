@@ -1,0 +1,32 @@
+@import '../../../style/variables';
+
+.login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 25px;
+    width: 60%;
+}
+
+.loginButton {
+    color: $backgroundColor !important;
+    font-family: $second-Font !important;
+    font-weight: bold !important;
+    margin-top: 15px !important;
+}
+
+.paragraphForm {
+    margin: 5% 0 0 0;
+
+}
+
+.errorUl {
+    padding: 20px;
+    width: 100%;
+}
+
+.error @media (max-width: 375px) {
+    .paragraphForm {
+        color: #000;
+    }
+}

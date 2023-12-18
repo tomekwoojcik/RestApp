@@ -1,0 +1,23 @@
+@import "./reset";
+@import "./variables";
+
+.urlopApp {
+    width: 100vw;
+    height: 100vh;
+}
+
+.MuiPaper-root {
+    width: 85vw;
+}
+
+@media (max-width: $mobile-width) {
+    .css-13vb0xd-MuiPaper-root-MuiTable-root {
+        // width: 85vw;
+        display: block;
+        overflow-x: scroll;
+    }
+
+    .tableHeaders {
+        width: 100%;
+    }
+}

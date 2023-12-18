@@ -1,0 +1,12 @@
+@import "../../../style/variables";
+
+
+@media (max-width: $mobile-width) {
+    .table {
+        width: 100%;
+    }
+
+    .tableHeaders {
+        width: 100%;
+    }
+}

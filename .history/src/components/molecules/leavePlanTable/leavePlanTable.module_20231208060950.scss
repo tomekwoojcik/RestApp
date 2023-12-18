@@ -1,0 +1,17 @@
+@import "../../../style/variables";
+
+.table {
+    background-color: aquamarine;
+}
+
+@media (max-width: $mobile-width) {
+    .table.ecss-13vb0xd-MuiPaper-root-MuiTable-root {
+        width: 100vw !important;
+        display: block !important;
+        overflow-x: scroll !important;
+    }
+
+    .tableHeaders {
+        width: 100%;
+    }
+}

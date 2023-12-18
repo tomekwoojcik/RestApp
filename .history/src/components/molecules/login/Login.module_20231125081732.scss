@@ -1,0 +1,43 @@
+@import "../../../style/variables";
+
+.login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 25px;
+    width: 60%;
+}
+
+.loginButton {
+    color: $backgroundColor !important;
+    font-family: $second-Font !important;
+    font-weight: bold !important;
+    margin-top: 15px !important;
+}
+
+.paragraphForm {
+    margin: 5% 0 0 0;
+    font-weight: bold;
+}
+
+.errorUl {
+    padding: 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.errorElements {
+    width: 18vh;
+}
+
+@media (max-width: $mobile-width) {
+    .paragraphForm {
+        color: #000;
+    }
+
+    .errorElements {
+        width: 50vw;
+    }
+}

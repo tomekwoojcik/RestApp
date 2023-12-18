@@ -1,0 +1,17 @@
+@import "../../../style/variables";
+
+.MuiTableCell-head {
+    background-color: red;
+}
+
+@media (max-width: $mobile-width) {
+    .table {
+        width: 100vw;
+        display: block;
+        overflow-x: scroll;
+    }
+
+    .tableHeaders {
+        width: 100%;
+    }
+}

@@ -1,0 +1,15 @@
+.loginPages {
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    height: 100vh;
+}
+
+
+@media (max-height:10vh) {
+    .loginPages {
+        width: 100%;
+    }
+
+
+}

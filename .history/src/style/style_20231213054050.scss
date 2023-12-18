@@ -1,0 +1,23 @@
+@import "./reset";
+@import "./variables";
+
+.urlopApp {
+    width: 100vw;
+    height: 100vh;
+}
+
+.MuiPaper-root {
+    background-color: aquamarine;
+}
+
+@media (max-width: $mobile-width) {
+    .MuiPaper-root {
+        width: 80vw !important;
+        display: block !important;
+        overflow-x: scroll !important;
+    }
+
+    .tableHeaders {
+        width: 100%;
+    }
+}

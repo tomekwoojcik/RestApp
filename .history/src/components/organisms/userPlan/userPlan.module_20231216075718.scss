@@ -1,0 +1,13 @@
+@import "../../../style/variables";
+
+.userPlanTextField {
+    width: 50%;
+}
+
+.userAppDiv {}
+
+@media (max-width: $mobile-width) {
+    .userAppDiv {
+        width: 100vw;
+    }
+}

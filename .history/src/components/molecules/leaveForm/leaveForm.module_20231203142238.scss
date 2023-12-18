@@ -1,0 +1,31 @@
+@import "../../../style/variables";
+
+.formDiv {
+    flex-direction: row !important;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.label {
+    font-family: $first-Font;
+}
+
+.listForm {
+    width: 20vw;
+}
+
+.buttonForm {
+    height: 55px;
+}
+
+@media (max-width: $mobile-width) {
+    .formDiv {
+        width: calc(100vw - 80px) !important;
+        flex-direction: column !important;
+
+    }
+
+    .listForm {
+        width: 231px;
+    }
+}

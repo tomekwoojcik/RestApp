@@ -1,0 +1,14 @@
+@import "../../style/variables";
+
+.userPage {
+    display: flex;
+    flex-direction: row;
+    // padding: 30px;
+}
+
+@media (max-width: $mobile-width) {
+    .userPage {
+        width: 100vw;
+        flex-direction: column;
+    }
+}

@@ -1,0 +1,8 @@
+@import "../../../style/variables";
+
+
+@media (max-width: $mobile-width) {
+    .tableBox {
+        width: 100vw;
+    }
+}

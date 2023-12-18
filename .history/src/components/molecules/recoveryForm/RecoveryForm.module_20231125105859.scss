@@ -1,0 +1,24 @@
+@import './../../../style/variables';
+
+.formBox {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    width: 80vw;
+}
+
+.errList {
+    padding: 10px 0;
+}
+
+.fieldForm {
+    margin-right: 10px !important;
+}
+
+.recoveryButton {
+    display: block;
+    color: $backgroundColor !important;
+    padding: 20px;
+}

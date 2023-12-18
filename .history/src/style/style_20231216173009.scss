@@ -1,0 +1,49 @@
+@import "./reset";
+@import "./variables";
+@import "../components/organisms/workersList/_workersList.tsx"
+$paddingToolbar: 16px;
+$paddingDocker: 24px;
+
+.urlopApp {
+    width: 100vw;
+    height: 100vh;
+}
+
+.css-hyum1k-MuiToolbar-root {
+    width: calc(100vw - calc(2 * $paddingToolbar));
+}
+
+.css-1f2xuhi-MuiDrawer-docked {
+    width: calc(100vw - calc(2 * $paddingDocker));
+}
+
+.css-yfo96e {
+    width: calc(100vw - calc(2 * $paddingDocker));
+}
+
+.css-13vb0xd-MuiPaper-root-MuiTable-root {
+    width: 90vw !important;
+}
+
+// .css-rqglhn-MuiTable-root {
+//     width: 90vw !important;
+// }
+
+.css-11qgvpa-MuiPaper-root-MuiAppBar-root {
+    width: calc(100vw - calc(2 * $paddingToolbar));
+}
+
+@media (max-width: $mobile-width) {
+    .css-13vb0xd-MuiPaper-root-MuiTable-root {
+        display: block !important;
+        overflow-x: scroll !important;
+    }
+
+    .leavePlanTable_table__J-nsz {
+        width: 90vw !important;
+    }
+
+    .tableHeaders {
+        width: 100%;
+    }
+}

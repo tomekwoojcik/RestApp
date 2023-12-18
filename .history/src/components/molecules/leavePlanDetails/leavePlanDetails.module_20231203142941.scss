@@ -1,0 +1,9 @@
+.tableBox {
+    width: 100vw;
+}
+
+@media (max-width: $mobile-width) {
+    .userAppDiv {
+        width: 425px;
+    }
+}
